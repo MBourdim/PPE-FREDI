@@ -18,7 +18,7 @@
                 <h1 style="color: #56c6c6;">Mot de passe oublié</h1>
             </div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: #56c6c6;">Log In</button></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: #56c6c6;">Renvoyer</button></div>
         </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>

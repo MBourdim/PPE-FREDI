@@ -9,7 +9,8 @@ if (isset($_SESSION['user'])) {
 }
 
 //Recupère champs du formulaire d'inscription d'utilisateur particulier
-$name = isset($_POST['nom']) ? $_POST['nom'] : '';
+$nom = isset($_POST['nom']) ? $_POST['nom'] : '';
+$prenom = isset($_POST['prenom']) ? $_POST['prenom'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 $submit = isset($_POST['inscriptionForm']);
@@ -17,14 +18,10 @@ $submit = isset($_POST['inscriptionForm']);
 $error = '';
 
 if ($submit) {
-    if ($name != '' && $email != '' && $password != '') {
-        if ($password == $passwordVerif) {
-            $pass_hache = password_hash($password, PASSWORD_DEFAULT);
-            $user = new UsersDAO();
-            $error = $user->newUser($name, $email, $pass_hache);
-        } else {
-            $error = 'Veuillez mettre des mots de passe identique.';
-        }
+    if ($nom != '' && $prenom != '' && $email != '' && $password != '') {
+        $pass_hache = password_hash($password, PASSWORD_DEFAULT);
+        $user = new UsersDAO();
+        $user->newUser($nom, $prenom, $email, $pass_hache);
     } else {
         $error = 'Veuillez compléter les champs correctement.';
     }
@@ -56,6 +53,7 @@ if ($submit) {
                 ?>
 
                 <div class="form-group"><input class="form-control" type="text" name="nom" placeholder="Nom"></div>
+                <div class="form-group"><input class="form-control" type="text" name="prenom" placeholder="Prénom"></div>
                 <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
                 <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Mot de passe"></div>
                 <div class="form-group"><button class="btn btn-primary btn-block" name="inscriptionForm" type="submit" style="background-color: #56c6c6;">Inscription</button></div>
