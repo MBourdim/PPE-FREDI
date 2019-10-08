@@ -1,3 +1,28 @@
+<?php
+session_start();
+require_once('init.php');
+//Ajout DAO Utilisateurs
+require 'DAO/usersDAO.php';
+
+if (isset($_SESSION['user'])) {
+    header('Location: index.php');
+}
+
+//Recupère champs du formulaire d'inscription d'utilisateur particulier
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$submit = isset($_POST['renvoieForm']);
+
+$error = '';
+
+if($submit) {
+    if($email != '') {
+        $user = new UsersDAO();
+        $error = $user->renvoieMotDePasse($email);
+    } else {
+        $error = 'Veuillez compléter les champs correctement.';
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -17,8 +42,13 @@
             <div class="illustration">
                 <h1 style="color: #56c6c6;">Mot de passe oublié</h1>
             </div>
+            <?php
+            if ($error != '') {
+                echo '<p class="color: red">' . $error . '</p>';
+            }
+            ?>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: #56c6c6;">Renvoyer</button></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" name="renvoieForm" type="submit" style="background-color: #56c6c6;">Renvoyer</button></div>
         </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
