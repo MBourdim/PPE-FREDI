@@ -45,7 +45,7 @@ if ($submit) {
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
                 <h1 style="color: #56c6c6;">Inscription</h1>
-
+            </div>
                 <?php
                 if ($error != '') {
                     echo '<p class="color: red">' . $error . '</p>';

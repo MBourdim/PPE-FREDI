@@ -1,6 +1,7 @@
 <?php
 require_once('DAO.php');
 require_once('user.php');
+require_once('Utils.php');
 
 class usersDAO extends DAO {
     //Constructeur
@@ -64,6 +65,48 @@ class usersDAO extends DAO {
             } else {
                 return 'Mauvais mot de passe';
             }
+        }
+    }
+
+    //Renvoie d'un nouveau mot de passe
+    public function renvoieMotDePasse($email) {
+        $sql = "SELECT email FROM utilisateur WHERE email = :email";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':email' => $email
+            ));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
+        }
+
+        if(!$row) {
+            return 'Ce compte existe pas';
+        } else {
+            $newPassword = Utils::generatePassword();
+            $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+
+            $this->majNewPassword($newPasswordHash, $email);
+
+            //Afficher le nouveau mot de passe
+            return 'Votre nouveau mot de passe: '.$newPassword.'<br/><a href="connexion.php">Connexion</a>';
+        }
+    }
+
+    //Mise à jour du mot de passe de renvoie
+    public function majNewPassword($password, $email) {
+        $sql = "UPDATE utilisateur SET password = :password WHERE email = :email";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':email' => $email,
+                ':password' => $password,
+            ));
+        } catch (PDOException $ex) {
+            throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
         }
     }
 }

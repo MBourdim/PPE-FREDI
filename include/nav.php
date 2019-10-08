@@ -10,6 +10,7 @@
                 if(isset($_SESSION['user'])) {
                     echo '
                     <a class="btn btn-light action-button" role="button" href="mon_compte.php">Mon compte</a>
+                    <a class="btn btn-light action-button" role="button" href="deconnexion.php">Deconnexion</a>
                     ';
                 } else {
                     echo '
