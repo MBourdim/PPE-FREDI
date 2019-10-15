@@ -14,8 +14,20 @@ if(isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 
+//Collection des periodes
 $periodes = new PeriodeDAO();
 $rows = $periodes->findAll();
+
+//Permet de desactiver une periode
+$annee = isset($_POST['annee']) ? $_POST['annee'] : '';
+$submit = isset($_POST['desactiverPeriode']);
+
+$error = '';
+
+if($submit) {
+    $periode = new PeriodeDAO();
+    $error = $periode->desactiverPeriode($annee);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,6 +50,11 @@ $rows = $periodes->findAll();
                     <a href="creer_periode.php">
                         <button class="btn btn-primary" type="button" style="margin-bottom: 25px; width: 100%;">Creer une periode</button>
                     </a>
+                    <?php
+                    if ($error != '') {
+                        echo '<p class="color: red">' . $error . '</p>';
+                    }
+                    ?>
                 </div>
             </div>
             <?php 
@@ -48,7 +65,12 @@ $rows = $periodes->findAll();
                 <div class="col-md-4" style="height: 50px;">
                     <p style="margin-top: 13px;">Période de l\'année:  '.$row->getAnnee().'</p>
                 </div>
-                <div class="col-md-4" style="height: 50px;"><button class="btn btn-primary" type="button" style="height: 100%; width: 100%;">Desactiver</button></div>
+                <div class="col-md-4" style="height: 50px;">
+                    <form method="POST">
+                        <input type="hidden" name="annee" value="'.$row->getAnnee().'"/>
+                        <button class="btn btn-primary" type="submit" name="desactiverPeriode" type="button" style="height: 100%; width: 100%;">Desactiver</button>
+                    </form>
+                </div>
             </div>';
 
             }
