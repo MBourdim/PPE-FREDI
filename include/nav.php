@@ -3,7 +3,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link" href="liste_periode.php">Période</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Note de frais</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="display_notes.php">Note de frais</a></li>
             </ul>
             <span class="navbar-text actions">
                 <?php
