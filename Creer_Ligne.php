@@ -78,3 +78,19 @@
 </body>
 
 </html>
+
+<?php
+require_once('DAO/user.php');
+require_once('init.php');
+require_once('DAO/periodeDAO.php');
+session_start();
+
+if(isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    //Verifie si il s'agit d'un controlleur
+    if($user->getTypeUser() == 3 || $user->getTypeUser() == 1) {
+        header('Location: index.php');
+    }
+} else {
+    header('Location: index.php');
+}
