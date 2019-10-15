@@ -24,7 +24,7 @@
     <div class="row" style="margin-top: 46px;">
         <div class="col-md-4"><a href="Modifier_Ligne.php"><button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;">Modifier</button></a></div>
         <div
-            class="col-md-4" style="padding-right: 0px;padding-top: 10px;"><a href="#" style="width: auto;margin-top: 15px;margin-right: 0px;margin-left: 95px;margin-bottom: 0px;min-height: 0px;max-height: 0px;min-width: 0px;max-width: 0px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">Note de Frais N° xxxx</a></div>
+            class="col-md-4" style="padding-right: 0px;padding-top: 10px;"><a href="Ligne_de_frais.php" style="width: auto;margin-top: 15px;margin-right: 0px;margin-left: 95px;margin-bottom: 0px;min-height: 0px;max-height: 0px;min-width: 0px;max-width: 0px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">Note de Frais N° xxxx</a></div>
     <div
         class="col-md-4"><button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;" name="supprNote">Supprimer</button></div>
         </div>
