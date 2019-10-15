@@ -14,7 +14,7 @@
     <div>
         <div class="container" style="margin-top: 0px;">
             <div class="row" style="margin-top: 46px;">
-                <div class="col-md-4"><button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;">Créer une Note</button></div>
+                <div class="col-md-4"><a href="Creer_Ligne.php"><button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;">Créer une Note</button></a></div>
                 <div
                     class="col-md-4" style="padding-right: 0px;padding-top: 10px;"><button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: -10px;">Générer un bordereau</button></div>
             <div
