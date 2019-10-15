@@ -57,7 +57,7 @@ class usersDAO extends DAO {
                 session_start();
 
                 //Creation d'un User
-                $user = new User($row['nom'], $row['prenom'], $row['email']);
+                $user = new User($row['nom'], $row['prenom'], $row['email'], $row['id_type_utilisateur']);
                 $_SESSION['user'] = $user;
 
                 //Redirection une fois connecté

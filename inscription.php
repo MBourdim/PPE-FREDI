@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 
-//Recupère champs du formulaire d'inscription d'utilisateur particulier
+//Recupère champs du formulaire d'inscription
 $nom = isset($_POST['nom']) ? $_POST['nom'] : '';
 $prenom = isset($_POST['prenom']) ? $_POST['prenom'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';

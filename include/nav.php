@@ -1,8 +1,8 @@
 <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
-    <div class="container"><a class="navbar-brand" href="#">FREDI</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><a class="navbar-brand" href="index.php">FREDI</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Période</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="liste_periode.php">Période</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="#">Note de frais</a></li>
             </ul>
             <span class="navbar-text actions">

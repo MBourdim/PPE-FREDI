@@ -1,14 +1,13 @@
 <?php
 session_start();
 require_once('init.php');
-//Ajout DAO Utilisateurs
-require 'DAO/usersDAO.php';
+require_once('DAO/usersDAO.php');
 
 if (isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 
-//Recupère champs du formulaire d'inscription d'utilisateur particulier
+//Recupère champs du formulaire
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 $submit = isset($_POST['connexionForm']);
@@ -40,16 +39,14 @@ if($submit) {
     <div class="login-clean">
         <form method="post">
             <h2 class="sr-only">Login Form</h2>
-
+            <div class="illustration">
+                <h1 style="color: #56c6c6;">Connexion</h1>
+            </div>
             <?php
             if ($error != '') {
                 echo '<p class="color: red">' . $error . '</p>';
             }
             ?>
-
-            <div class="illustration">
-                <h1 style="color: #56c6c6;">Connexion</h1>
-            </div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Mot de passe"></div>
             <div class="form-group">

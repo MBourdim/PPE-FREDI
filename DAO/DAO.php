@@ -2,7 +2,7 @@
 class DAO {
     protected $pdo = NULL; //Objet de connexion
 
-    function __construct() {
+    public function __construct() {
         //Paramètres à partir du init.php
         $user = DB_USER;
         $password = DB_PASSWORD;
