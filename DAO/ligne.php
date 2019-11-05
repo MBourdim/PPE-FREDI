@@ -17,7 +17,16 @@ class Ligne {
     public function __construct(array $row) {
         $this->date_frais = $row['date_frais'];
         $this->lib_trajet = $row['forfait_km'];
-        $this->cout_peage = $row['code_statut'];
+        $this->cout_peage = $row['cout_peage'];
+        $this->cout_repas = $row['cout_repas'];
+        $this->cout_hebergement = $row['cout_hebergement'];
+        $this->nb_km = $row['nb_km'];
+        $this->total_km = $row['total_km'];
+        $this->total_ligne = $row['total_ligne'];
+        $this->code_statut = $row['code_statut'];
+        *$this->id_motif = $row['id_motif'];
+        $this->annee = $row['annee'];
+        $this->id_note = $row['id_note'];
     }
 
     //Get date_frais
@@ -81,9 +90,9 @@ class Ligne {
         return $this->total_km;
     }
 
-    //Set total_ligne
-    public function set_total_ligne($total_ligne) {
-        $this->total_ligne = $total_ligne;
+    //Set total_km
+    public function set_total_km($total_km) {
+        $this->total_km = $total_km;
     }
     //Get total_ligne
     public function get_total_ligne() {
