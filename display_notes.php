@@ -1,3 +1,36 @@
+<?php
+require_once('DAO/user.php');
+require_once('init.php');
+require_once('DAO/periodeDAO.php');
+session_start();
+
+if(isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    //Verifie si il s'agit d'un controlleur
+    if($user->getTypeUser() == 3 || $user->getTypeUser() == 1) {
+        header('Location: index.php');
+    }
+} else {
+    header('Location: index.php');
+}
+
+
+
+
+
+//SUPPRESSION
+if(isset($_POST['supprNote'])) {
+    $idligne = $data['id_ligne'];
+    $res = $bdd->prepare('DELETE FROM ligne_de_frais WHERE id_ligne = :idligne');
+    //Associe une valeur à un nom correspondant ou à un point d'interrogation (comme paramètre fictif) dans la requête SQL qui a été utilisé pour préparer la requête.
+    $res->bindValue(':idligne', $idligne, PDO::PARAM_INT);
+    $res->execute();
+
+    header('Location: display_notes.php');
+}
+//SUPPRESSION
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -35,34 +68,3 @@
 </body>
 
 </html>
-<?php
-require_once('DAO/user.php');
-require_once('init.php');
-require_once('DAO/periodeDAO.php');
-session_start();
-
-if(isset($_SESSION['user'])) {
-    $user = $_SESSION['user'];
-    //Verifie si il s'agit d'un controlleur
-    if($user->getTypeUser() == 3 || $user->getTypeUser() == 1) {
-        header('Location: index.php');
-    }
-} else {
-    header('Location: index.php');
-}
-
-
-
-
-
-//SUPPRESSION
-if(isset($_POST['supprNote'])) {
-    $idligne = $data['id_ligne'];
-    $res = $bdd->prepare('DELETE FROM ligne_de_frais WHERE id_ligne = :idligne');
-    //Associe une valeur à un nom correspondant ou à un point d'interrogation (comme paramètre fictif) dans la requête SQL qui a été utilisé pour préparer la requête.
-    $res->bindValue(':idligne', $idligne, PDO::PARAM_INT);
-    $res->execute();
-
-    header('Location: display_notes.php');
-}
-//SUPPRESSION
