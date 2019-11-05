@@ -29,6 +29,24 @@ Class PeriodeDAO extends DAO {
         header('Location: liste_periode.php');
     }
 
+    //Mets à jour une période
+    public function updatePeriode($annee, $tarif, $statut) {
+        $sql = "UPDATE periode SET forfait_km = :forfait_km, code_statut = :code_statut WHERE annee = :annee";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':annee' => $annee,
+                ':forfait_km' => $tarif,
+                ':code_statut' => $statut
+            ));
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+
+        return "La période à été modifié";
+    }
+
     //Retourne toutes les periodes
     public function findAll() {
         $sql = "SELECT * FROM periode";

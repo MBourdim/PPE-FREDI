@@ -6,8 +6,8 @@ session_start();
 
 if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    //Verifie si il s'agit d'un controlleur
-    if($user->getTypeUser() == 3 || $user->getTypeUser() == 1) {
+    //Verifie si il s'agit d'un admin
+    if($user->getTypeUser() == 2 || $user->getTypeUser() == 3) {
         header('Location: index.php');
     }
 } else {
@@ -61,14 +61,14 @@ if($submit) {
             foreach($rows as $row) { 
 
             echo '<div class="row" style="margin-bottom: 25px;">
-                <div class="col-md-4" style="height: 50px;"><button class="btn btn-primary" type="button" style="height: 100%; width: 100%">Modifier</button></div>
+                <div class="col-md-4" style="height: 50px;"><a href="modifier_periode.php?annee='.$row->getAnnee().'"><button class="btn btn-primary" type="button" style="height: 100%; width: 100%">Modifier</button></a></div>
                 <div class="col-md-4" style="height: 50px;">
                     <p style="margin-top: 13px;">Période de l\'année:  '.$row->getAnnee().'</p>
                 </div>
                 <div class="col-md-4" style="height: 50px;">
                     <form method="POST">
                         <input type="hidden" name="annee" value="'.$row->getAnnee().'"/>
-                        <button class="btn btn-primary" type="submit" name="desactiverPeriode" type="button" style="height: 100%; width: 100%;">Desactiver</button>
+                        <button class="btn btn-primary" type="submit" name="desactiverPeriode" type="button" style="height: 100%; width: 100%;" '; if($row->getCodeStatut() == 0) { echo 'disabled'; } echo'>Desactiver</button>
                     </form>
                 </div>
             </div>';

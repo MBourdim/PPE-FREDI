@@ -14,8 +14,13 @@ if(isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 
+//Verifie si annee nest pas vide
+if($_GET['annee'] == '') {
+    header('Location: liste_periode.php');
+}
+
 //Recupère champs du formulaire
-$annee = isset($_POST['annee']) ? $_POST['annee'] : '';
+$annee = $_GET['annee'];
 $tarif = isset($_POST['tarif']) ? $_POST['tarif'] : '';
 $statut = isset($_POST['statut']) ? $_POST['statut'] : '';
 $submit = isset($_POST['periodeForm']);
@@ -25,7 +30,7 @@ $error = '';
 if($submit) {
     if($annee != '' && $tarif != '' && $statut != '') {
         $periode = new PeriodeDAO();
-        $error = $periode->createPeriode($annee, $tarif, $statut);
+        $error = $periode->updatePeriode($annee, $tarif, $statut);
     } else {
         $error = 'Veuillez compléter les champs correctement.';
     }
@@ -37,7 +42,7 @@ if($submit) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>FREDI Creer Periode</title>
+    <title>FREDI Modifier Periode</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -49,7 +54,7 @@ if($submit) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 style="text-align: center; margin-bottom: 15%;">Créer une période</h1>
+                    <h1 style="text-align: center; margin-bottom: 15%;">Modifier la période <?php echo $annee; ?></h1>
                 </div>
                 <?php
                 //Message d'erreur
@@ -60,17 +65,8 @@ if($submit) {
             </div>
             <form method="POST">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <span>Année:&nbsp;</span><input type="number" name="annee" style="margin-bottom: 25px;padding-top: 10px;padding-right: 10px;padding-bottom: 10px;padding-left: 10px;">
-                    </div>
                     <div class="col-md-6"><span>Tarif kilometrique:&nbsp;</span><input type="text" name="tarif" style="padding: 10px 10px 10px 10px;"></div>
                     <div class="col-md-6"><span>Statut:&nbsp;</span>
-                        <!-- <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Dropdown </button>
-                            <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                            </div>
-                        </div> -->
                         <select class="form-control" name="statut">
                             <option value="1">Ouverte</option>
                             <option value="0">Fermée</option>
@@ -78,7 +74,7 @@ if($submit) {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 text-center"><button class="btn btn-primary" type="submit" name="periodeForm" style="margin-top: 15%; width: 100%">Creer la periode</button></div>
+                    <div class="col-md-12 text-center"><button class="btn btn-primary" type="submit" name="periodeForm" style="margin-top: 15%; width: 100%">Modifier la periode</button></div>
                 </div>
             </form>
         </div>
