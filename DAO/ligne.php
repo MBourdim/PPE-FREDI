@@ -1,5 +1,6 @@
 <?php
 class Ligne {
+    private $id_ligne;
     private $date_frais;
     private $lib_trajet;
     private $cout_peage;
