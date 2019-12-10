@@ -1,4 +1,8 @@
 <?php
+require_once('DAO/user.php');
+require_once('init.php');
+require_once('DAO/periodeDAO.php');
+session_start();
 
 if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -28,7 +32,7 @@ $error = '';
 if($submit) {
     if($annee != '' && $tarif != '' && $statut != '') {
         $periode = new PeriodeDAO();
-        $error = $periode->createPeriode($id_note, $date_frais, $cout_repas, $nb_km, $cout_peage, $total_km, $code_statut, $cout_hebergement, $total_ligne, $);
+        $error = $periode->createPeriode($id_note, $date_frais, $cout_repas, $nb_km, $cout_peage, $total_km, $code_statut, $cout_hebergement, $total_ligne);
     } else {
         $error = 'Veuillez compléter les champs correctement.';
     }
