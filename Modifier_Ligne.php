@@ -1,5 +1,8 @@
 <?php
+require_once('DAO/user.php');
 require_once('init.php');
+require_once('DAO/periodeDAO.php');
+require_once('DAO/ligneDAO.php');
 
 session_start();
 
