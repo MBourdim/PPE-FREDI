@@ -52,7 +52,7 @@ if($submit) {
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit" name="connexionForm" style="background-color: #56c6c6;">Connexion</button>
             </div>
-            <a class="forgot" href="mot_de_passe_oublie.php">Renvoyer mot de pase ?</a>
+            <a class="forgot" href="mot_de_passe_oublie.php">Renvoyer mot de passe ?</a>
         </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
