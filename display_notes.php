@@ -25,17 +25,7 @@ $id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
 
 
 
-/*//SUPPRESSION
-if(isset($_POST['supprNote'])) {
-    $id_ligne = $data['id_ligne'];
-    $res = $bdd->prepare('DELETE FROM ligne_de_frais WHERE id_ligne = :id_ligne');
-    //Associe une valeur à un nom correspondant ou à un point d'interrogation (comme paramètre fictif) dans la requête SQL qui a été utilisé pour préparer la requête.
-    $res->bindValue(':id_ligne', $id_ligne, PDO::PARAM_INT);
-    $res->execute();
 
-    header('Location: liste_ligne.php');
-}
-//SUPPRESSION*/
 ?>
 
 <!DOCTYPE html>
