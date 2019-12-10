@@ -1,8 +1,4 @@
 <?php
-require_once('DAO/user.php');
-require_once('init.php');
-require_once('DAO/periodeDAO.php');
-session_start();
 
 if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];

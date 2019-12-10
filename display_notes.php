@@ -2,6 +2,8 @@
 require_once('DAO/user.php');
 require_once('init.php');
 require_once('DAO/periodeDAO.php');
+require_once('DAO/ligneDAO.php');
+
 session_start();
 
 if(isset($_SESSION['user'])) {
@@ -14,18 +16,26 @@ if(isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 
+//Collection des ligne_de_frais
+$ligne_de_frais = new LigneDAO();
+$rows = $ligne_de_frais->findAll();
 
-//SUPPRESSION
+$id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
+
+
+
+
+/*//SUPPRESSION
 if(isset($_POST['supprNote'])) {
-    $idligne = $data['id_ligne'];
-    $res = $bdd->prepare('DELETE FROM ligne_de_frais WHERE id_ligne = :idligne');
+    $id_ligne = $data['id_ligne'];
+    $res = $bdd->prepare('DELETE FROM ligne_de_frais WHERE id_ligne = :id_ligne');
     //Associe une valeur à un nom correspondant ou à un point d'interrogation (comme paramètre fictif) dans la requête SQL qui a été utilisé pour préparer la requête.
-    $res->bindValue(':idligne', $idligne, PDO::PARAM_INT);
+    $res->bindValue(':id_ligne', $id_ligne, PDO::PARAM_INT);
     $res->execute();
 
-    header('Location: display_notes.php');
+    header('Location: liste_ligne.php');
 }
-//SUPPRESSION
+//SUPPRESSION*/
 ?>
 
 <!DOCTYPE html>
@@ -53,13 +63,14 @@ if(isset($_POST['supprNote'])) {
     </div>
     <div class="row" style="margin-top: 46px;">
     <?php
+    foreach($rows as $row){
         echo '<div class="col-md-4"><a href="Modifier_Ligne.php"><button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;" '; if ($user->getTypeUser() == 1) { echo 'disabled'; } echo'>Modifier</button></a></div>'
     ?>
         <div
-            class="col-md-4" style="padding-right: 0px;padding-top: 10px;"><a href="Ligne_de_frais.php" style="width: auto;margin-top: 15px;margin-right: 0px;margin-left: 95px;margin-bottom: 0px;min-height: 0px;max-height: 0px;min-width: 0px;max-width: 0px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">Note de Frais N° xxxx</a></div>
+            class="col-md-4" style="padding-right: 0px;padding-top: 10px;"><a href="Ligne_de_frais.php?id_ligne=<?php echo $row->get_id_ligne(); ?>" style="width: auto;margin-top: 15px;margin-right: 0px;margin-left: 95px;margin-bottom: 0px;min-height: 0px;max-height: 0px;min-width: 0px;max-width: 0px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">Note de Frais N°<?php echo $row->get_id_ligne(); ?></a></div>
     <?php
-        echo '<div class="col-md-4"><button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;" name="supprNote" '; if ($user->getTypeUser() == 1) { echo 'disabled'; } echo'>Supprimer</button></div>'
-    ?>
+        echo '<div class="col-md-4"><button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;" name="supprNote" '; if ($user->getTypeUser() == 1) { echo 'disabled'; } echo'>Supprimer</button></div>';
+    }?>
         </div>
         </div>
         </div>
