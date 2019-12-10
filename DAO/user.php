@@ -1,16 +1,28 @@
 <?php
 class User {
+    private $id;
     private $nom;
     private $prenom;
     private $email;
     private $typeUser;
 
     //constructeur
-    public function __construct($nom, $prenom, $email, $typeUser) {
+    public function __construct($id, $nom, $prenom, $email, $typeUser) {
+        $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
         $this->typeUser = $typeUser;
+    }
+
+    //Get id
+    public function getId() {
+        return $this->id;
+    }
+
+    //Set id
+    public function setId($id) {
+        $this->id = $id;
     }
 
     //Get nom

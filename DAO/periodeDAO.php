@@ -13,8 +13,6 @@ Class PeriodeDAO extends DAO {
         $sql = "INSERT INTO periode (annee, forfait_km, code_statut) ";
         $sql .= "VALUES (:annee, :forfait_km, :code_statut)";
 
-        var_dump($sql);
-
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(

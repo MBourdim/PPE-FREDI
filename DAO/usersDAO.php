@@ -3,7 +3,7 @@ require_once('DAO.php');
 require_once('user.php');
 require_once('Utils.php');
 
-class usersDAO extends DAO {
+class UsersDAO extends DAO {
     //Constructeur
     public function __construct() {
         parent::__construct();
@@ -28,7 +28,62 @@ class usersDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
         }
 
+        $idUtilisateur = $this->findUserPourInscription($email);
+        $this->newAdherent($idUtilisateur);
+
         header('Location: connexion.php');
+    }
+
+    //Nouveau adherent
+    public function newAdherent($idUtilisateur) {
+        $sql = "INSERT INTO adherent (id_utilisateur, numero_licence, code_sexe, date_naissance, adresse1, adresse2, adresse3, nom_responsable, prenom_responsable, code_statut, id_club) ";
+        $sql .= "VALUES (:id_utilisateur, :numero_licence, :code_sexe, :date_naissance, :adresse1, :adresse2, :adresse3, :nom_responsable, :prenom_responsable, :code_statut, :id_club)";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':id_utilisateur' => $idUtilisateur,
+                ':numero_licence' => '',
+                ':code_sexe' => '',
+                ':date_naissance' => '',
+                ':adresse1' => '',
+                ':adresse2' => '',
+                ':adresse3' => '',
+                ':nom_responsable' => '',
+                ':prenom_responsable' => '',
+                ':code_statut' => 1,
+                ':id_club' => 1
+            ));
+        } catch (PDOException $ex) {
+            throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
+        }
+    }
+
+    //Mise à jour du profil adherent
+    public function updateProfilAdherent($numeroLicence, $codeSexe, $dateNaissance, $adresse1, $adresse2, $adresse3, $nomResponsable, $prenomResponsable, $idUtilisateur) {
+        $sql = "UPDATE periode SET forfait_km = :forfait_km, code_statut = :code_statut WHERE annee = :annee";
+
+        $sql = "UPDATE adherent SET id_utilisateur = :id_utilisateur, numero_licence = :numero_licence, code_sexe = :code_sexe, date_naissance = :date_naissance, adresse1 = :adresse1, 
+                adresse2 = :adresse2, adresse3 = :adresse3, nom_responsable = :nom_responsable, prenom_responsable = :prenom_responsable WHERE id_utilisateur = :id_utilisateur";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':id_utilisateur' => $idUtilisateur,
+                ':numero_licence' => $numeroLicence,
+                ':code_sexe' => $codeSexe,
+                ':date_naissance' => $dateNaissance,
+                ':adresse1' => $adresse1,
+                ':adresse2' => $adresse2,
+                ':adresse3' => $adresse3,
+                ':nom_responsable' => $nomResponsable,
+                ':prenom_responsable' => $prenomResponsable
+            ));
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+
+        return "Le profil à été mis à jour";
     }
 
     //Connexion de l'utilisateur
@@ -57,7 +112,7 @@ class usersDAO extends DAO {
                 session_start();
 
                 //Creation d'un User
-                $user = new User($row['nom'], $row['prenom'], $row['email'], $row['id_type_utilisateur']);
+                $user = new User($row['id_utilisateur'], $row['nom'], $row['prenom'], $row['email'], $row['id_type_utilisateur']);
                 $_SESSION['user'] = $user;
 
                 //Redirection une fois connecté
@@ -109,4 +164,23 @@ class usersDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
         }
     }
+
+    //Recherche utilisateur
+    public function findUserPourInscription($email) {
+        $sql = "SELECT id_utilisateur FROM utilisateur WHERE email = :email";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(":email" => $email));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+
+        // $salarie = new Salarie($row);
+        // // Retourne l'objet métier
+        // return $salarie;
+
+        return $row['id_utilisateur'];
+        }
 }
