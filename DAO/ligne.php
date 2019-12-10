@@ -18,7 +18,7 @@ class Ligne {
     public function __construct(array $row) {
         $this->id_ligne = $row['id_ligne'];
         $this->date_frais = $row['date_frais'];
-        $this->lib_trajet = $row['forfait_km'];
+        $this->lib_trajet = $row['lib_trajet'];
         $this->cout_peage = $row['cout_peage'];
         $this->cout_repas = $row['cout_repas'];
         $this->cout_hebergement = $row['cout_hebergement'];
@@ -31,13 +31,23 @@ class Ligne {
         $this->id_note = $row['id_note'];
     }
 
+<<<<<<< HEAD
     //Get id_ligne
     public function getId_ligne() {
+=======
+
+    //Get id_ligne
+    public function get_id_ligne() {
+>>>>>>> edc4a0ac0ed93cd033896e17f40119072f8cbe8f
         return $this->id_ligne;
     }
 
     //Set id_ligne
+<<<<<<< HEAD
     public function setId_ligne($id_ligne) {
+=======
+    public function set_id_ligne($id_ligne) {
+>>>>>>> edc4a0ac0ed93cd033896e17f40119072f8cbe8f
         $this->id_ligne = $id_ligne;
     }
 
