@@ -30,14 +30,33 @@ class Ligne {
         $this->annee = $row['annee'];
         $this->id_note = $row['id_note'];
     }
+<<<<<<< HEAD
 
     //Get id_ligne
     public function getId_ligne() {
+=======
+<<<<<<< HEAD
+    //Get id_ligne
+    public function get_id_ligne() 
+=======
+
+    //Get id_ligne
+    public function get_id_ligne() {
+>>>>>>> d33e405fc62089f8278358926778ad8b1c3aeffa
+>>>>>>> eba24682241f015f2259e6288b3eb565cfb380ee
         return $this->id_ligne;
     }
 
     //Set id_ligne
+<<<<<<< HEAD
     public function setId_ligne($id_ligne) {
+=======
+    public function set_id_ligne($id_ligne) {
+<<<<<<< HEAD
+
+=======
+>>>>>>> d33e405fc62089f8278358926778ad8b1c3aeffa
+>>>>>>> eba24682241f015f2259e6288b3eb565cfb380ee
         $this->id_ligne = $id_ligne;
     }
 

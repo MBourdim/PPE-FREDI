@@ -32,8 +32,7 @@ Class LigneDAO extends DAO {
 
     //Nouvelle ligne_de_frais
     public function createLigne($date_frais,$lib_trajet,$cout_peage,$cout_repas,$cout_hebergement,$nb_km,$total_km,$total_ligne,$code_statut,$id_motif,$annee,$id_note) {
-        $sql = "INSERT INTO ligne_de_frais (date_frais,lib_trajet,cout_peage,cout_repas,cout_hebergement,nb_km,total_km,total_ligne,code_statut,id_motif,annee,id_note) ";
-        $sql .= "VALUES (:date_frais,:lib_trajet,:cout_peage,:cout_repas,:cout_hebergement,:nb_km,:total_km,:total_ligne,:code_statut,:id_motif,:annee,:id_note)";
+        $sql = "INSERT INTO ligne_de_frais (date_frais,lib_trajet,cout_peage,cout_repas,cout_hebergement,nb_km,total_km,total_ligne,code_statut,id_motif,annee,id_note) VALUES (:date_frais,:lib_trajet,:cout_peage,:cout_repas,:cout_hebergement,:nb_km,:total_km,:total_ligne,:code_statut,:id_motif,:annee,:id_note)";
 
         var_dump($sql);
 
