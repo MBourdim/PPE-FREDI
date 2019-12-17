@@ -8,7 +8,7 @@ if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     //Verifie si il s'agit d'un admin
     if($user->getTypeUser() == 2 || $user->getTypeUser() == 3) {
-        header('Location: Ligne_de_frais.php');
+        header('Location: display_notes.php');
     }
 } else {
     header('Location: index.php');
