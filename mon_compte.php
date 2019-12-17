@@ -21,6 +21,11 @@ $nomResponsable = isset($_POST['nomResponsable']) ? $_POST['nomResponsable'] : '
 $prenomResponsable = isset($_POST['prenomResponsable']) ? $_POST['prenomResponsable'] : '';
 $submit = isset($_POST['modifProfil']);
 
+$objectSession = $_SESSION['user'];
+$idUtilisateur = $objectSession->getId();
+
+$error = '';
+
 if($submit) {
     $user = new UsersDAO();
     $error = $user->updateProfilAdherent($numeroLicence, $codeSexe, $dateNaissance, $adresse1, $adresse2, $adresse3, $nomResponsable, $prenomResponsable, $idUtilisateur);

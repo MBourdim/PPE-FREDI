@@ -28,8 +28,8 @@ class UsersDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
         }
 
-        $idUtilisateur = $this->findUserPourInscription($email);
-        $this->newAdherent($idUtilisateur);
+        // $idUtilisateur = $this->findUserPourInscription($email);
+        // $this->newAdherent($idUtilisateur);
 
         header('Location: connexion.php');
     }
@@ -61,8 +61,6 @@ class UsersDAO extends DAO {
 
     //Mise à jour du profil adherent
     public function updateProfilAdherent($numeroLicence, $codeSexe, $dateNaissance, $adresse1, $adresse2, $adresse3, $nomResponsable, $prenomResponsable, $idUtilisateur) {
-        $sql = "UPDATE periode SET forfait_km = :forfait_km, code_statut = :code_statut WHERE annee = :annee";
-
         $sql = "UPDATE adherent SET id_utilisateur = :id_utilisateur, numero_licence = :numero_licence, code_sexe = :code_sexe, date_naissance = :date_naissance, adresse1 = :adresse1, 
                 adresse2 = :adresse2, adresse3 = :adresse3, nom_responsable = :nom_responsable, prenom_responsable = :prenom_responsable WHERE id_utilisateur = :id_utilisateur";
 
