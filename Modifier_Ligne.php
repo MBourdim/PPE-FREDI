@@ -1,12 +1,10 @@
 <?php
 require_once('DAO/user.php');
 require_once('init.php');
-require_once('DAO/periodeDAO.php');
 require_once('DAO/ligneDAO.php');
-
 session_start();
 
-if(isset($_SESSION['user'])) {
+/*if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     //Verifie si il s'agit d'un admin
     if($user->getTypeUser() == 2 || $user->getTypeUser() == 3) {
@@ -14,7 +12,7 @@ if(isset($_SESSION['user'])) {
     }
 } else {
     header('Location: index.php');
-}
+}*/
 
 //Verifie si id_ligne nest pas vide
 if($_GET['id_ligne'] == '') {
@@ -23,18 +21,18 @@ if($_GET['id_ligne'] == '') {
 
 //Recupère champs du formulaire
 $id_ligne = isset($_GET['id_ligne']) ? $_GET['id_ligne'] : '';
-$date_frais = isset($_GET['date_frais']) ? $_GET['date_frais'] : '';
-$lib_trajet = isset($_GET['lib_trajet']) ? $_GET['lib_trajet'] : '';
-$cout_peage = isset($_GET['cout_peage']) ? $_GET['cout_peage'] : '';
-$cout_repas = isset($_GET['cout_repas']) ? $_GET['cout_repas'] : '';
-$cout_hebergement = isset($_GET['cout_hebergement']) ? $_GET['cout_hebergement'] : '';
-$nb_km = isset($_GET['nb_km']) ? $_GET['nb_km'] : '';
-$total_km = isset($_GET['total_km']) ? $_GET['total_km'] : '';
-$total_ligne = isset($_GET['total_ligne']) ? $_GET['total_ligne'] : '';
-$code_statut = isset($_GET['code_statut']) ? $_GET['code_statut'] : '';
+$date_frais = isset($_POST['date_frais']) ? $_POST['date_frais'] : '';
+$lib_trajet = isset($_POST['lib_trajet']) ? $_POST['lib_trajet'] : '';
+$cout_peage = isset($_POST['cout_peage']) ? $_POST['cout_peage'] : '';
+$cout_repas = isset($_POST['cout_repas']) ? $_POST['cout_repas'] : '';
+$cout_hebergement = isset($_POST['cout_hebergement']) ? $_POST['cout_hebergement'] : '';
+$nb_km = isset($_POST['nb_km']) ? $_POST['nb_km'] : '';
+$total_km = isset($_POST['total_km']) ? $_POST['total_km'] : '';
+$total_ligne = isset($_POST['total_ligne']) ? $_POST['total_ligne'] : '';
+$code_statut = isset($_POST['code_statut']) ? $_POST['code_statut'] : '';
+$id_motif = isset($_POST['code_statut']) ? $_POST['code_statut'] : '';
 
-
-$submit = isset($_GET['ligneForm']); 
+$submit = isset($_POST['ligneForm']); 
 
 $error = '';
 
@@ -42,8 +40,8 @@ if($submit) {
     if($date_frais != '' && $lib_trajet != '' && $cout_peage != '' && $cout_repas != '' && $cout_hebergement != '' && $nb_km != ''
     && $total_km != '' && $total_ligne != '') {
         $ligne = new LigneDAO();
-        $error = $ligne->updateLigne($id_ligne, $date_frais, $lib_trajet, $cout_peage, $cout_repas, $cout_hebergement, $nb_km, $total_km, $total_ligne, $code_statut,
-        $id_motif, $annee, $id_note);
+        $error = $ligne->updateLigne($date_frais, $lib_trajet, $cout_peage, $cout_repas, $cout_hebergement, $nb_km, $total_km, $total_ligne, $code_statut,
+        $id_motif);
     } else {
         $error = 'Veuillez compléter les champs correctement.';
     }
@@ -56,7 +54,7 @@ if($submit) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Modifier_Ligne</title>
+    <title>FREDI Modifier_Ligne</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -72,6 +70,7 @@ if($submit) {
                     <h1 style="text-align:center">Modifier votre ligne de frais N°<?php echo $id_ligne; ?></h1>
                 </div>
             </div>
+    <form method="POST">
             <div class="row">
                 <div class="col-md-6" style="padding: 0px;width: 555px;height: 120px;"><input type="date" name="date_frais" style="padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);width: 260px;height: 50px;margin: 60px;padding-top: 10px;margin-right: 60px;margin-top: 40px;"></div>
                 <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_repas" style="width: 260px;height: 50px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);text-align: left;margin: 60px;margin-top: 40px;" placeholder="Coûts repas (€)"></div>
@@ -128,9 +127,10 @@ if($submit) {
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12" style="height: 90px;margin-right: 0px;"><button class="btn btn-primary" type="button" name="ligneForm" style="width: 143px;margin: 25px;margin-right: 25px;margin-bottom: 25px;margin-top: 53px;margin-left: 410px;height: 48px;">Valider</button></div>
+                <div class="col-md-12" style="height: 90px;margin-right: 0px;"><button class="btn btn-primary" type="submit" name="ligneForm" style="width: 143px;margin: 25px;margin-right: 25px;margin-bottom: 25px;margin-top: 53px;margin-left: 410px;height: 48px;">Valider</button></div>
             </div>
         </div>
+        </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

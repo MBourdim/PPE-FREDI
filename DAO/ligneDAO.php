@@ -16,16 +16,16 @@ Class LigneDAO extends DAO {
             $sth->execute(array(
                 ':id_ligne' => $id_ligne
             ));
-            $rows = $sth->fetch(PDO::FETCH_ASSOC);
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
-        $lignes = array();
-
-        foreach ($rows as $row) {
-            $lignes[] = new Ligne($row);
+        $ligne_de_frais=null;
+        if ($row) {
+            $ligne_de_frais = new Ligne($row);
         }
+        
         // Retourne l'objet métier
         return $ligne_de_frais;
     }
@@ -63,7 +63,7 @@ Class LigneDAO extends DAO {
     }
 
     //Mets à jour une ligne_de_frais
-    public function updateLigne($id_ligne,$date_frais,$lib_trajet,$cout_peage,$cout_repas,$cout_hebergement,$nb_km,$total_km,$total_ligne,$code_statut,$id_motif,$annee,$id_note) {
+    public function updateLigne($date_frais,$lib_trajet,$cout_peage,$cout_repas,$cout_hebergement,$nb_km,$total_km,$total_ligne,$code_statut,$id_motif) {
         $sql = "UPDATE ligne_de_frais SET date_frais = :date_frais,
         lib_trajet = :lib_trajet,
         cout_peage = :cout_peage,
@@ -73,15 +73,12 @@ Class LigneDAO extends DAO {
         total_km = :total_km,
         total_ligne = :total_ligne,
         code_statut = :code_statut,
-        id_motif = :id_motif,
-        annee = :annee,
-        id_note = :id_note
+        id_motif = :id_motif
         WHERE id_ligne = :id_ligne";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-        ":id_ligne" => $id_ligne,
         ":date_frais" => $date_frais,
         ":lib_trajet" => $lib_trajet,
         ":cout_peage" => $cout_peage,
@@ -92,14 +89,14 @@ Class LigneDAO extends DAO {
         ":total_ligne" => $total_ligne,
         ":code_statut" => $code_statut,
         ":id_motif" => $id_motif,
-        ":annee" => $annee,
-        ":id_note" => $id_note
             ));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
         return "La ligne de frais à été modifié";
+
+        header('Location: display_notes.php');
     }
 
     //Retourne toutes les lignes
