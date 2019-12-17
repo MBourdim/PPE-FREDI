@@ -31,35 +31,30 @@ Class LigneDAO extends DAO {
     }
 
     //Nouvelle ligne_de_frais
-    public function createLigne($date_frais,$lib_trajet,$cout_peage,$cout_repas,$cout_hebergement,$nb_km,$total_km,$total_ligne,$code_statut,$id_motif,$annee,$id_note) {
-        $sql = "INSERT INTO ligne_de_frais (date_frais,lib_trajet,cout_peage,cout_repas,cout_hebergement,nb_km,total_km,total_ligne,code_statut,id_motif,annee,id_note) VALUES (:date_frais,:lib_trajet,:cout_peage,:cout_repas,:cout_hebergement,:nb_km,:total_km,:total_ligne,:code_statut,:id_motif,:annee,:id_note)";
+    public function createLigne($date_frais,$lib_trajet,$cout_peage,$cout_repas,$cout_hebergement,$nb_km,$id_motif) {
+        $sql = "INSERT INTO ligne_de_frais (date_frais,lib_trajet,cout_peage,cout_repas,cout_hebergement,nb_km,code_statut,id_motif,annee) VALUES (:date_frais,:lib_trajet,:cout_peage,:cout_repas,:cout_hebergement,:nb_km,:code_statut,:id_motif,YEAR(:date_frais))";
 
         var_dump($sql);
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ":id_ligne" => $id_ligne,
                 ":date_frais" => $date_frais,
                 ":lib_trajet" => $lib_trajet,
                 ":cout_peage" => $cout_peage,
                 ":cout_repas" => $cout_repas,
                 ":cout_hebergement"  => $cout_hebergement,
                 ":nb_km" => $nb_km,
-                ":total_km" => $total_km,
-                ":total_ligne" => $total_ligne,
-                ":code_statut" => $code_statut,
-                ":id_motif" => $id_motif,
-                ":annee" => $annee,
-                ":id_note" => $id_note
+                ":code_statut" => 1,
+                ":id_motif" => $id_motif
             ));
         } catch (PDOException $ex) {
             throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
         }
 
-        $this->updateNote($id_note,$date_remise,$total,$code_statut,$id_utilisateur);
+        //$this->updateNote($id_note,$date_remise,$total,$id_utilisateur);
 
-        header('Location: liste_ligne.php');
+        header('Location: display_notes.php');
     }
 
     //Mets à jour une ligne_de_frais
@@ -141,11 +136,10 @@ Class LigneDAO extends DAO {
     }
 
     //Mets à jour la note active
-    public function updateNote($id_note,$date_remise,$total,$code_statut,$id_utilisateur) {
+    public function updateNote($id_note,$date_remise,$total,$id_utilisateur) {
         $sql = "UPDATE note SET 
         date_remise = :date_remise,
         total = :total,
-        code_statut = :code_statut
         WHERE id_note = :id_note AND id_utilisateur = :id_utilisateur";
 
         try {
@@ -154,7 +148,6 @@ Class LigneDAO extends DAO {
                 ":id_note" => $id_note,
                 ":date_remise" => $date_remise,
                 ":total" => $total,
-                ":code_statut" => $code_statut,
                 ":id_utilisateur" => $id_utilisateur
             ));
         } catch (PDOException $e) {
@@ -163,6 +156,8 @@ Class LigneDAO extends DAO {
 
         return "La note à été mise à jour";
     }
+
+
     /*//SUPPRESSION
 if(isset($_POST['supprNote']) ? $_POST[]) {
     $id_ligne = $data['id_ligne'];

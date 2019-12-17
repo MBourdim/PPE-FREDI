@@ -35,6 +35,7 @@ class Ligne {
     public function get_id_ligne() {
         return $this->id_ligne;
     }
+    
 
     //Set id_ligne
     public function set_id_ligne($id_ligne) {
