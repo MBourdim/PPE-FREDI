@@ -6,10 +6,6 @@ session_start();
 
 if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    //Verifie si il s'agit d'un admin
-    if($user->getTypeUser() == 2 || $user->getTypeUser() == 3) {
-        header('Location: display_notes.php');
-    }
 } else {
     header('Location: index.php');
 }
@@ -73,9 +69,9 @@ $error = '';
                 <div class="col-md-6" style="width: 555px;height: 150px;">
                     <select>
                         <option <?php if($row->get_id_motif() == 1) { echo "selected"; }?>>Réunion</option>
-                        <option <?php if($row->get_id_motif() == 2) { echo "selected"; }?>>Compétition régionale</option>
-                        <option <?php if($row->get_id_motif() == 3) { echo "selected"; }?>>Compétition nationale</option>
-                        <option <?php if($row->get_id_motif() == 4) { echo "selected"; }?>>Compétition international</option>
+                        <option <?php if($row->get_id_motif() == 2) { echo "selected"; }?>>Compétition Régionale</option>
+                        <option <?php if($row->get_id_motif() == 3) { echo "selected"; }?>>Compétition Nationale</option>
+                        <option <?php if($row->get_id_motif() == 4) { echo "selected"; }?>>Compétition Internationale</option>
                         <option <?php if($row->get_id_motif() == 5) { echo "selected"; }?>>Stage</option>
                     </select>
             </div>

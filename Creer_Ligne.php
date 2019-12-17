@@ -84,7 +84,7 @@ if($submit) {
                         <option value="5">Stage</option>
                     </select>
             </div>
-            <div class="col-md-6" name="cout_hebergement" style="width: 555px;height: 120px;"><input type="text" style="margin: 60px;width: 260px;height: 50px;padding: 10px 40px;margin-top: 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);" placeholder="Coûts hébergement (€)"></div>
+            <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_hebergement" style="margin: 60px;width: 260px;height: 50px;padding: 10px 40px;margin-top: 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);" placeholder="Coûts hébergement (€)"></div>
         </div>
     </div>
     </div>
