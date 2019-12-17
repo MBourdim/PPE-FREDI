@@ -71,10 +71,13 @@ $error = '';
         <div class="container">
             <div class="row">
                 <div class="col-md-6" style="width: 555px;height: 150px;">
-                    <div class="dropdown" style="width: 555px;height: 120px;"><p class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="background-color: rgb(247,249,252);color: rgb(80,94,108);width: 180px;margin: 85px;margin-top: 50px;">Motif : <?php echo $row->get_id_motif()?></p>
-                        <div
-                            class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">1 - En Cours</a><a class="dropdown-item" role="presentation" href="#">2 - Validée</a><a class="dropdown-item" role="presentation" href="#">3 - Controlée</a></div>
-                </div>
+                    <select>
+                        <option <?php if($row->get_id_motif() == 1) { echo "selected"; }?>>Réunion</option>
+                        <option <?php if($row->get_id_motif() == 2) { echo "selected"; }?>>Compétition régionale</option>
+                        <option <?php if($row->get_id_motif() == 3) { echo "selected"; }?>>Compétition nationale</option>
+                        <option <?php if($row->get_id_motif() == 4) { echo "selected"; }?>>Compétition international</option>
+                        <option <?php if($row->get_id_motif() == 5) { echo "selected"; }?>>Stage</option>
+                    </select>
             </div>
             <div class="col-md-6" style="width: 555px;height: 120px;"><p type="text" style="margin: 60px;width: 260px;height: 50px;padding: 10px 40px;margin-top: 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);" title="Coûts hébergement (€)">Coûts hébergement(€) : <?php echo $row->getCout_hebergement()?></p></div>
         </div>
