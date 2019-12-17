@@ -9,9 +9,9 @@ session_start();
 if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     //Verifie si il s'agit d'un contrôleur
-    if($user->getTypeUser() == 3) {
-        header('Location: index.php');
-    }
+    // if($user->getTypeUser() == 3) {
+    //     header('Location: index.php');
+    // }
 } else {
     header('Location: index.php');
 }
@@ -21,11 +21,6 @@ $ligne_de_frais = new LigneDAO();
 $rows = $ligne_de_frais->findAll();
 
 $id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
