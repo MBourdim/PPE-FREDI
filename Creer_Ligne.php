@@ -6,9 +6,9 @@ session_start();
 
 if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    //Verifie si il s'agit d'un controlleur
-    if($user->getTypeUser() == 3 || $user->getTypeUser() == 1) {
-        header('Location: index.php');
+    //Verifie si il s'agit d'un adherent
+    if($user->getTypeUser() == 1 || $user->getTypeUser() == 2) {
+        header('Location: display_notes.php');
     }
 } else {
     header('Location: index.php');

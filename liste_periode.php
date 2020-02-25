@@ -63,7 +63,7 @@ if($submit) {
             echo '<div class="row" style="margin-bottom: 25px;">
                 <div class="col-md-4" style="height: 50px;"><a href="modifier_periode.php?annee='.$row->getAnnee().'"><button class="btn btn-primary" type="button" style="height: 100%; width: 100%">Modifier</button></a></div>
                 <div class="col-md-4" style="height: 50px;">
-                    <p style="margin-top: 13px;">Période de l\'année:  '.$row->getAnnee().'</p>
+                    <p style="margin-top: 13px;">Période de l\'année:  '.$row->getAnnee().' / Tarif km: '.$row->getTarif().' €</p>
                 </div>
                 <div class="col-md-4" style="height: 50px;">
                     <form method="POST">
