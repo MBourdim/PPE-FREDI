@@ -56,9 +56,9 @@ $pdf = new PDF();
     }*/
     $pdf->SetFillColor(224,235,255);
     $pdf->SetDrawColor(33,150,243);
-    $pdf->Write(7, utf8_decode("Je soussigné BANDILELLA , demeurant au :".$adherent->nom_resp." ".$adherent->prenom_resp));
+    $pdf->Write(7, utf8_decode("Je soussigné BANDILELLA , demeurant au :".$row->getNom_resp()." ".$row->getPrenom_resp()));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode(/*$adherent->adresse1.*/"30, rue Widric 1er 54600 Villers les Nancy"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode($row->getAdresse1()), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association: "));
     $pdf->Ln();
@@ -78,11 +78,11 @@ $pdf = new PDF();
     $pdf->SetDrawColor(33,150,243);
     $pdf->Write(7, utf8_decode("Mon numéro de licence est le suivant :"));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode(/*$adherent->num_licence*/" 17 05 40 010 443"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode($row->getNum_licence()), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("Montant des dons :"));
     $pdf->Ln();
-    $pdf->Cell(190, 7, utf8_decode(/*$ligne->total.*/"100 EUR"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode(/*$ligne->total*/ "100 EUR"), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Ln();
 
