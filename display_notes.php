@@ -63,18 +63,28 @@ if(isset($_GET['supprimer'])) {
                     </a>
                 </div>
                 <!---bouton generateur bordereau-->
+<<<<<<< HEAD
                 <a href="bordereau.php?id=<?php echo $user->get_Id(); ?>">
+=======
+>>>>>>> 2a30e093e7e0bd7cc3c7088f5313c4313092bde0
                 <div class="col-md-4" style="padding-right: 0px;padding-top: 10px;">
-                    <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: -10px;">
-                        Générer un bordereau
-                    </button>
+                    <?php if ($user->getTypeUser() == 3) { ?>
+                    <a href="bordereau.php">
+                        <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: -10px;">
+                            Générer un bordereau
+                        </button>
                     </a>
+                    <?php } ?>
                 </div>
                 <!---bouton generateur CERFA-->
                 <div class="col-md-4">
-                    <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;">
-                        Générer un CERFA&nbsp;
-                    </button>
+                    <?php if ($user->getTypeUser() == 2) { ?>
+                        <a href="cerfa.php">
+                        <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;">
+                            Générer un CERFA&nbsp;
+                        </button>
+                    </a>
+                    <?php } ?>
                 </div>
             </div>
             <div class="row" style="margin-top: 46px;">
