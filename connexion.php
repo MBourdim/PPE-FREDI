@@ -52,6 +52,7 @@ if($submit) {
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit" name="connexionForm" style="background-color: #56c6c6;">Connexion</button>
             </div>
+            <!-- bouton renvoie de mot de passe--->
             <a class="forgot" href="mot_de_passe_oublie.php">Renvoyer mot de passe ?</a>
         </form>
     </div>
