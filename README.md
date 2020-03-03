@@ -5,9 +5,9 @@ On y retrouve des CRUD (Create Read Update Delete) pour les périodes et les not
 
 ## Droit d'utilisateur
 
- - Administrateur
- - Controleur
- - Adherent
+ - Administrateur -> compte@administrateur.fr / administrateur
+ - Controleur -> compte@controlleur.fr / controlleur
+ - Adherent -> compte@adherent.fr / adherent
 
 ### Cas d'utilisation de FREDI
 
