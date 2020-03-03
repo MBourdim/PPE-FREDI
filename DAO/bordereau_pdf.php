@@ -1,7 +1,7 @@
 <?php
 include_once('fpdf/fpdf.php');
 include_once('DAO/user.php');
-include_once('DAO/userDAO.php');
+include_once('DAO/usersDAO.php');
 
 class PDF extends FPDF
 {

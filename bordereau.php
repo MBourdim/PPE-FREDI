@@ -1,5 +1,31 @@
 <?php
 include_once('DAO/bordereau_pdf.php');
+include_once('DAO/user.php');
+include_once('DAO/adherent.php');
+session_start();
+
+
+//Verifie si on est connecter
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    //Verifie si il s'agit pas d'un admin
+    if ($user->getTypeUser() == 1) {
+        header('Location: index.php');
+    }
+} else {
+//Renvoie sur la page d'accueil
+    header('Location: index.php');
+}
+
+$error = '';
+
+//Verifie si id_ligne nest pas vide
+if($_GET['id_ligne'] == '') {
+  header('Location: Ligne_de_frais.php');
+} else {
+  $ligneDAO = new LigneDAO();
+  $uneLigne = $ligneDAO->find($_GET['id_ligne']);
+}*/
 
 $pdf = new PDF();
     $pdf->SetFont('Arial','',11);
@@ -20,9 +46,9 @@ $pdf = new PDF();
     }*/
     $pdf->SetFillColor(224,235,255);
     $pdf->SetDrawColor(33,150,243);
-    $pdf->Write(7, utf8_decode("Je soussigné BANDILELLA Clément, demeurant au :"/*.$adherent->nom." ".$adherent->prenom.*/));
+    $pdf->Write(7, utf8_decode("Je soussigné BANDILELLA , demeurant au :".$adherent->nom_resp." ".$adherent->prenom_resp));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode(/*$adherent->adress." ".$adherent->postal_code." ".$adherent->city*/"30, rue Widric 1er 54600 Villers les Nancy"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode(/*$adherent->adresse1.*/"30, rue Widric 1er 54600 Villers les Nancy"), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association: "));
     $pdf->Ln();
@@ -33,7 +59,7 @@ $pdf = new PDF();
     $pdf->Ln();
     //Tableau
   $pdf->FancyTable($header/*,$data*/);
-  $pdf->Total(/*$note->total*/"ex : 260,50 EUR");
+  $pdf->Total(/*$ligne->total*/"ex : 260,50 EUR");
     $pdf->Ln();
     $pdf->Ln();
 
@@ -42,7 +68,7 @@ $pdf = new PDF();
     $pdf->SetDrawColor(33,150,243);
     $pdf->Write(7, utf8_decode("Mon numéro de licence est le suivant :"));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode(/*$adherent->licence_num*/" 17 05 40 010 443"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode(/*$adherent->num_licence*/" 17 05 40 010 443"), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("Montant des dons :"));
     $pdf->Ln();
