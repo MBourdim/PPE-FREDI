@@ -6,12 +6,12 @@ require_once('DAO/ligneDAO.php');
 
 session_start();
 
-if(isset($_SESSION['user'])) {
+if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    //Verifie si il s'agit d'un contrôleur
-    // if($user->getTypeUser() == 3) {
-    //     header('Location: index.php');
-    // }
+    //Verifie si il s'agit pas d'un admin
+    if ($user->getTypeUser() == 1) {
+        header('Location: index.php');
+    }
 } else {
     header('Location: index.php');
 }
@@ -36,56 +36,59 @@ $id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
 </head>
 
 <body>
-<?php require_once('include/nav.php'); ?>
+    <?php require_once('include/nav.php'); ?>
     <div>
         <div class="container" style="margin-top: 0px;">
             <div class="row" style="margin-top: 46px;">
                 <div class="col-md-4">
                     <a href="Creer_Ligne.php">
                         <button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;">
-                        Créer une Note
+                            Créer une Note
                         </button>
                     </a>
                 </div>
                 <div class="col-md-4" style="padding-right: 0px;padding-top: 10px;">
                     <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: -10px;">
-                    Générer un bordereau
+                        Générer un bordereau
                     </button>
                 </div>
                 <div class="col-md-4">
                     <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;">
-                    Générer un CERFA&nbsp;
+                        Générer un CERFA&nbsp;
                     </button>
                 </div>
+            </div>
+            <div class="row" style="margin-top: 46px;">
+                <?php
+                foreach ($rows as $row) { ?>
+                    <div class="col-md-4">
+                        <a href="Modifier_Ligne.php?id_ligne=<?php echo $row->get_id_ligne(); ?>">
+                            <button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;" <?php if ($user->getTypeUser() == 1) {
+                                                                                                                                                                                                                                                                        echo 'disabled';
+                                                                                                                                                                                                                                                                    } ?>>
+                                Modifier
+                            </button>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4" style="padding-right: 0px;padding-top: 10px;">
+                        <a href="Ligne_de_frais.php?id_ligne=<?php echo $row->get_id_ligne(); ?>" style="width: auto;margin-top: 15px;margin-right: 0px;margin-left: 95px;margin-bottom: 0px;min-height: 0px;max-height: 0px;min-width: 0px;max-width: 0px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">Note de Frais N°<?php echo $row->get_id_ligne(); ?></a></div>
+
+                    <div class="col-md-4">
+                        <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;" name="supprNote" <?php if ($user->getTypeUser() == 1) {
+                                                                                                                                                                                                                                                    echo 'disabled';
+                                                                                                                                                                                                                                                } ?>>
+                            Supprimer
+                        </button>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
     </div>
-    <div class="row" style="margin-top: 46px;">
-    <?php
-    foreach($rows as $row){?>
-        <div class="col-md-4">
-            <a href="Modifier_Ligne.php?id_ligne=<?php echo $row->get_id_ligne(); ?>">
-                <button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;" <?php if ($user->getTypeUser() == 1) { echo 'disabled'; }?>>
-                Modifier
-                </button>
-            </a>
-        </div>
-    
-        <div
-            class="col-md-4" style="padding-right: 0px;padding-top: 10px;">
-            <a href="Ligne_de_frais.php?id_ligne=<?php echo $row->get_id_ligne(); ?>" style="width: auto;margin-top: 15px;margin-right: 0px;margin-left: 95px;margin-bottom: 0px;min-height: 0px;max-height: 0px;min-width: 0px;max-width: 0px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">Note de Frais N°<?php echo $row->get_id_ligne(); ?></a></div>
-    
-        <div class="col-md-4">
-            <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;" name="supprNote" <?php if ($user->getTypeUser() == 1) { echo 'disabled'; }?>>
-            Supprimer
-            </button>
-        </div>
-    <?php
-                    }
-    ?>
-        </div>
-        </div>
-        </div>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

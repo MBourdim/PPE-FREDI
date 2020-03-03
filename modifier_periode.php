@@ -17,6 +17,9 @@ if(isset($_SESSION['user'])) {
 //Verifie si annee nest pas vide
 if($_GET['annee'] == '') {
     header('Location: liste_periode.php');
+} else {
+    $unePeriode = new PeriodeDAO();
+    $tarifPeriode = $unePeriode->find($_GET['annee']);
 }
 
 //Recupère champs du formulaire
@@ -65,11 +68,13 @@ if($submit) {
             </div>
             <form method="POST">
                 <div class="row">
-                    <div class="col-md-6"><span>Tarif kilometrique:&nbsp;</span><input type="text" name="tarif" style="padding: 10px 10px 10px 10px;"></div>
+                    <div class="col-md-6"><span>Tarif kilometrique:&nbsp;</span>
+                        <input type="text" name="tarif" style="padding: 10px 10px 10px 10px;" value="<?php echo $tarifPeriode->getTarif(); ?>">
+                    </div>
                     <div class="col-md-6"><span>Statut:&nbsp;</span>
                         <select class="form-control" name="statut">
-                            <option value="1">Ouverte</option>
-                            <option value="0">Fermée</option>
+                            <option value="1" <?php if($tarifPeriode->getCodeStatut() == 0) { echo "selected"; }?>>Ouverte</option>
+                            <option value="0" <?php if($tarifPeriode->getCodeStatut() == 1) { echo "selected"; }?>>Fermée</option>
                         </select>
                     </div>
                 </div>

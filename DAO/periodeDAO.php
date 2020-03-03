@@ -42,7 +42,7 @@ Class PeriodeDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
-        return "La période à été modifié";
+        return 'La période à été modifié. Retourner à la <a href="liste_periode.php">liste</a>'; 
     }
 
     //Retourne toutes les periodes
@@ -65,6 +65,24 @@ Class PeriodeDAO extends DAO {
 
         // Retourne un tableau d'objets
         return $periodes;
+    }
+
+    //Retourne une période
+    public function find($annee) {
+        $sql = "SELECT * FROM periode WHERE annee = :annee";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':annee' => $annee
+            ));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+
+        // Retourne un tableau
+        return new Periode($row);
     }
 
     //Desactive une période

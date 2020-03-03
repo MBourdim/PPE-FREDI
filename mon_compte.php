@@ -55,7 +55,7 @@ if($submit) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 style="text-align:center">Créer votre ligne de frais</h1>
+                    <h1 style="text-align:center">Mon compte</h1>
                 </div>
                 <?php
                 //Message d'erreur

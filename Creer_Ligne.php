@@ -6,9 +6,15 @@ session_start();
 
 if(isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
+<<<<<<< HEAD
     //Verifie si il s'agit d'un controlleur
     if($user->getTypeUser() == 1) {
         header('Location: index.php');
+=======
+    //Verifie si il s'agit d'un adherent
+    if($user->getTypeUser() == 1 || $user->getTypeUser() == 2) {
+        header('Location: display_notes.php');
+>>>>>>> eb13a84536e6cf8fa00aa933578e4cae79faaec9
     }
 } else {
     header('Location: index.php');
