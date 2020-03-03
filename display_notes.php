@@ -48,9 +48,10 @@ $id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
                     </a>
                 </div>
                 <div class="col-md-4" style="padding-right: 0px;padding-top: 10px;">
-                    <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: -10px;">
-                    Générer un bordereau
-                    </button>
+                    <a href="bordereau.php">
+                        <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: -10px;">
+                        Générer un bordereau
+                        </button>
                 </div>
                 <div class="col-md-4">
                     <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;">
@@ -74,6 +75,7 @@ $id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
             <a href="Ligne_de_frais.php?id_ligne=<?php echo $row->get_id_ligne(); ?>" style="width: auto;margin-top: 15px;margin-right: 0px;margin-left: 95px;margin-bottom: 0px;min-height: 0px;max-height: 0px;min-width: 0px;max-width: 0px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">Note de Frais N°<?php echo $row->get_id_ligne(); ?></a></div>
     
         <div class="col-md-4">
+        <a href="Modifier_Ligne.php?id_ligne=<?php echo $row->get_id_ligne(); ?>">
             <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;" name="supprNote" <?php if ($user->getTypeUser() == 1) { echo 'disabled'; }?>>
             Supprimer
             </button>

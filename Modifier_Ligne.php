@@ -2,6 +2,7 @@
 require_once('DAO/user.php');
 require_once('init.php');
 require_once('DAO/ligneDAO.php');
+require_once('DAO/ligne.php');
 session_start();
 
 /*if(isset($_SESSION['user'])) {
@@ -17,6 +18,10 @@ session_start();
 //Verifie si id_ligne nest pas vide
 if($_GET['id_ligne'] == '') {
     header('Location: Ligne_de_frais.php');
+} else {
+    $id_ligne = isset($_GET['id_ligne']) ? $_GET['id_ligne'] : '';
+    $uneLigne = new Ligne($id_ligne);
+
 }
 
 //Recupère champs du formulaire
@@ -30,7 +35,7 @@ $nb_km = isset($_POST['nb_km']) ? $_POST['nb_km'] : '';
 $total_km = isset($_POST['total_km']) ? $_POST['total_km'] : '';
 $total_ligne = isset($_POST['total_ligne']) ? $_POST['total_ligne'] : '';
 $code_statut = isset($_POST['code_statut']) ? $_POST['code_statut'] : '';
-$id_motif = isset($_POST['code_statut']) ? $_POST['code_statut'] : '';
+$id_motif = isset($_POST['motif']) ? $_POST['motif'] : '';
 
 $submit = isset($_POST['ligneForm']); 
 
@@ -80,7 +85,7 @@ if($submit) {
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6" style="margin: 0px;width: 555px;padding: 0px;height: 120px;"><input type="text" name="lib_trajet" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;margin-left: 60px;" placeholder="Trajet (Km)"></div>
+                <div class="col-md-6" style="margin: 0px;width: 555px;padding: 0px;height: 120px;"><input type="text" name="lib_trajet" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;margin-left: 60px;" placeholder="Trajet"></div>
                 <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_peage" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;" placeholder="Coûts péages (€)"></div>
             </div>
         </div>
@@ -98,9 +103,13 @@ if($submit) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6" style="width: 555px;height: 150px;">
-                    <div class="dropdown" style="width: 555px;height: 120px;"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="id_motif" style="background-color: rgb(247,249,252);color: rgb(80,94,108);width: 180px;margin: 85px;margin-top: 50px;">Motif</button>
-                        <div
-                            class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">test</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                <select name="motif" id="motif">
+                        <option value="1">Réunion</option>
+                        <option value="2">Compétition Régionale</option>
+                        <option value="3">Compétition Nationale</option>
+                        <option value="4">Compétition Internationale</option>
+                        <option value="5">Stage</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_hebergement" style="margin: 60px;width: 260px;height: 50px;padding: 10px 40px;margin-top: 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);" placeholder="Coûts hébergement (€)"></div>

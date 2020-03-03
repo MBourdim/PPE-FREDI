@@ -83,7 +83,7 @@ Class LigneDAO extends DAO {
         ":total_km" => $total_km,
         ":total_ligne" => $total_ligne,
         ":code_statut" => $code_statut,
-        ":id_motif" => $id_motif,
+        ":id_motif" => $id_motif
             ));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -96,7 +96,7 @@ Class LigneDAO extends DAO {
 
     //Retourne toutes les lignes
     public function findAll() {
-        $sql = "SELECT * FROM ligne_de_frais";
+        $sql = "SELECT * FROM ligne_de_frais"; //A modifier
 
         try {
             $sth = $this->pdo->prepare($sql);
