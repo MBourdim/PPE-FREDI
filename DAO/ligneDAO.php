@@ -58,7 +58,7 @@ Class LigneDAO extends DAO {
     }
 
     //Mets à jour une ligne_de_frais
-    public function updateLigne($date_frais,$lib_trajet,$cout_peage,$cout_repas,$cout_hebergement,$nb_km,$total_km,$total_ligne,$code_statut,$id_motif) {
+    public function updateLigne($date_frais,$lib_trajet,$cout_peage,$cout_repas,$cout_hebergement,$nb_km,$total_km,$total_ligne,$code_statut,$id_motif,$id_ligne) {
         $sql = "UPDATE ligne_de_frais SET date_frais = :date_frais,
         lib_trajet = :lib_trajet,
         cout_peage = :cout_peage,
@@ -74,24 +74,25 @@ Class LigneDAO extends DAO {
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-        ":date_frais" => $date_frais,
-        ":lib_trajet" => $lib_trajet,
-        ":cout_peage" => $cout_peage,
-        ":cout_repas" => $cout_repas,
-        ":cout_hebergement"  => $cout_hebergement,
-        ":nb_km" => $nb_km,
-        ":total_km" => $total_km,
-        ":total_ligne" => $total_ligne,
-        ":code_statut" => $code_statut,
-        ":id_motif" => $id_motif
+                ":date_frais" => $date_frais,
+                ":lib_trajet" => $lib_trajet,
+                ":cout_peage" => $cout_peage,
+                ":cout_repas" => $cout_repas,
+                ":cout_hebergement"  => $cout_hebergement,
+                ":nb_km" => $nb_km,
+                ":total_km" => $total_km,
+                ":total_ligne" => $total_ligne,
+                ":code_statut" => $code_statut,
+                ":id_motif" => $id_motif,
+                ':id_ligne' => $id_ligne
             ));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
-        return "La ligne de frais à été modifié";
+        return 'La ligne de frais à été modifié. Retourner à la <a href="display_notes.php">liste</a>';
 
-        header('Location: display_notes.php');
+        //header('Location: display_notes.php');
     }
 
     //Retourne toutes les lignes

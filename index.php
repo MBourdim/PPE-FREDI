@@ -18,6 +18,7 @@ session_start();
     <div class="row">
         <div class="col" style="text-align:center">
             <h1>Projet PPE FREDI</h1>
+            <p>Modifier le trigger dans la bdd pour que quand on update les lignes de frais le calcul de total se fasse comme à l'insertion</p>
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
