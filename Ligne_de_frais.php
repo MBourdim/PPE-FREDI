@@ -59,7 +59,7 @@ $error = '';
             <div class="row">
                 <div class="col-md-6" style="width: 555px;height: 120px;"><p type="text" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-left: 45px;margin-top: 40px;" placeholder="Kms parcourus (Km)">Kms parcourus (Km) : <?php echo $row->get_nb_km()?></p></div>
                 <div class="col-md-6"
-                    style="width: 555px;height: 120px;"><p type="text" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;" placeholder="Total Frais Kms (€)">Total Frais Kms (€) : <?php echo $row->get_total_ligne()?></p></div>
+                    style="width: 555px;height: 120px;"><p type="text" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;" placeholder="Total Frais Kms (€)">Total Frais Kms (€) : <?php echo $row->get_total_km()?></p></div>
             </div>
         </div>
     </div>

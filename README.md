@@ -3,6 +3,15 @@
 FREDI est une application web afin de gérer les adhérents de la Maison des Ligues de Lorraine.
 On y retrouve des CRUD (Create Read Update Delete) pour les périodes et les notes de frais.
 
+## Documentation
+
+Vous retrouverez la documentation de l'application FREDI dans le répertoire ```Documention```
+
+## Installation
+
+Afin d'installer le projet sur votre Xampp, veuillez en premier récupérer le fichier SQL dans ```Documentation/SQL```. Importer le fichier dans votre base de données.
+Récupérer ensuite, les fichiers de l'application et les placer dans un répertoire dans votre ```htdocs```
+
 ## Droit d'utilisateur
 
  - Administrateur -> compte@administrateur.fr / administrateur

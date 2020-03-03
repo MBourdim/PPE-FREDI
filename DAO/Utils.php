@@ -1,4 +1,5 @@
 <?php
+//Generateur de mot de passe
 class Utils {
     public static function generatePassword($longueur = 5) {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

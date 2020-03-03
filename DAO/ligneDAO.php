@@ -96,7 +96,7 @@ Class LigneDAO extends DAO {
 
     //Retourne toutes les lignes
     public function findAll() {
-        $sql = "SELECT * FROM ligne_de_frais";
+        $sql = "SELECT * FROM ligne_de_frais"; //A modifier
 
         try {
             $sth = $this->pdo->prepare($sql);

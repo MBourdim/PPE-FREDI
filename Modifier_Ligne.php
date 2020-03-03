@@ -2,6 +2,7 @@
 require_once('DAO/user.php');
 require_once('init.php');
 require_once('DAO/ligneDAO.php');
+require_once('DAO/ligne.php');
 session_start();
 
 /*if(isset($_SESSION['user'])) {
