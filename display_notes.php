@@ -59,6 +59,7 @@ $id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
                     </a>
                 </div>
                 <!---bouton generateur CERFA-->
+                <a href="cerfa.php">
                 <div class="col-md-4">
                     <button class="btn btn-primary border rounded-0 float-left" type="button" style="width: 230px;margin: 0px;height: 48px;margin-right: 7px;margin-bottom: 10px;margin-left: 52px;margin-top: 0px;">
                         Générer un CERFA&nbsp;
