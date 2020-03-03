@@ -63,10 +63,7 @@ if(isset($_GET['supprimer'])) {
                     </a>
                 </div>
                 <!---bouton generateur bordereau-->
-<<<<<<< HEAD
-                <a href="bordereau.php?id=<?php echo $user->get_Id(); ?>">
-=======
->>>>>>> 2a30e093e7e0bd7cc3c7088f5313c4313092bde0
+                <a href="bordereau.php?id=<?php echo $user->getId(); ?>">
                 <div class="col-md-4" style="padding-right: 0px;padding-top: 10px;">
                     <?php if ($user->getTypeUser() == 3) { ?>
                     <a href="bordereau.php">
