@@ -1,6 +1,6 @@
 <?php
-include('fpdf/fpdf.php');
-header('Location: fpdf/fpdf.php');
+include('DAO/cerfa_pdf.php');
+
 
 $pdf = new FPDF();
 $pdf->AddPage();
