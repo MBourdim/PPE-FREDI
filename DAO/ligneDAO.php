@@ -8,8 +8,7 @@ Class LigneDAO extends DAO {
         parent::__construct();
     }
 
-    public function find($id_ligne)
-    {
+    public function find($id_ligne) {
         $sql = "SELECT * FROM ligne_de_frais WHERE id_ligne= :id_ligne";
         try {
             $sth = $this->pdo->prepare($sql);
@@ -155,18 +154,19 @@ Class LigneDAO extends DAO {
         return "La note à été mise à jour";
     }
 
+    //Suprimer une ligne de frais 
+    public function supprimerLigne($id) {
+        $sql = "DELETE FROM ligne_de_frais WHERE id_ligne = :id_ligne";
 
-    /*//SUPPRESSION
-if(isset($_POST['supprNote']) ? $_POST[]) {
-    $id_ligne = $data['id_ligne'];
-    $res = $bdd->prepare('DELETE FROM ligne_de_frais WHERE id_ligne = :id_ligne');
-    //Associe une valeur à un nom correspondant ou à un point d'interrogation (comme paramètre fictif) dans la requête SQL qui a été utilisé pour préparer la requête.
-    $res->bindValue(':id_ligne', $id_ligne, PDO::PARAM_INT);
-    $res->execute();
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ":id_ligne" => $id
+            ));
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
 
-    header('Location: liste_ligne.php');
-}
-    //SUPPRESSION
-
-    public function supp*/
+        return "La ligne de frais à était supprimée";
+    }
 }
