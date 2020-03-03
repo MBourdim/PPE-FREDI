@@ -23,16 +23,11 @@ $error = '';
 $ligne_de_frais = new LigneDAO();
 $rows = $ligne_de_frais->findAll();
 
-<<<<<<< HEAD
 //On verifie si on veut supprimer une ligne de frais
 if(isset($_GET['supprimer'])) {
     $ligneSupprimer = new LigneDAO();
     $error = $ligneSupprimer->supprimerLigne($_GET['supprimer']);
 }
-=======
-//Recupere l'id de la ligne de frais
-$id_ligne = isset($_POST['id_ligne']) ? $_POST['id_ligne'] : '';
->>>>>>> 314ef2cc5c5500f8ad432470d3d9d861f0d74490
 ?>
 
 <!DOCTYPE html>
