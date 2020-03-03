@@ -9,7 +9,7 @@ Class AdherentDAO extends DAO {
     }
 
     public function find($id_adherent) {
-        $sql = "SELECT * FROM adherent WHERE id_adherent= :id_adherent";
+        $sql = "SELECT * FROM adherent WHERE id_utilisateur= :id_adherent";
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(

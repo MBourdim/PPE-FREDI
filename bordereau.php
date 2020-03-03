@@ -2,6 +2,8 @@
 include_once('DAO/bordereau_pdf.php');
 include_once('DAO/user.php');
 include_once('DAO/adherent.php');
+include_once('DAO/adherentDAO.php');
+require_once('init.php');
 session_start();
 
 
@@ -17,8 +19,16 @@ if (isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 
+$id_adherent = isset($_GET['id']) ? $_GET["id"] : "";
+//Collection des adherent
+$adherent = new AdherentDAO();
+$row = $adherent->find($id_adherent);
+
+
 $error = '';
 
+
+/*
 //Verifie si id_ligne nest pas vide
 if($_GET['id_ligne'] == '') {
   header('Location: Ligne_de_frais.php');
