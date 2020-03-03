@@ -1,11 +1,13 @@
 <?php
 include_once('fpdf/fpdf.php');
+include_once('DAO/user.php');
+include_once('DAO/userDAO.php');
 
 class PDF extends FPDF
 {
   
     // Chargement des données
-    function LoadData($file)
+    /*function LoadData($file)
     {
         // Lecture des lignes du fichier
         $lines = file($file);
@@ -13,7 +15,7 @@ class PDF extends FPDF
         foreach($lines as $line)
             $data[] = explode(';',trim($line));
         return $data;
-    }
+    }*/
 
     // Tableau simple
     function BasicTable($header/*, $data*/)
@@ -67,7 +69,6 @@ class PDF extends FPDF
         $height = 7;
 
         foreach($header as $head) {
-            //Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
             $this->Cell($head['width'], $height, $head['content'], 1, 0, 'C',true);
         }
         $this->Ln();
