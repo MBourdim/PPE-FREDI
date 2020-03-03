@@ -10,19 +10,21 @@ class Adherent {
     private $nom_resp;
     private $prenom_resp;
     private $code_statut;
+    private $id_club;
 
  //constructeur
-    public function __construct($id_adherent, $num_licence, $code_sexe, $date_naissance, $adresse1, $adresse2, $adresse3, $nom_resp, $prenom_resp, $code_statut) {
-        $this->id_adherent = $id_adherent;
-        $this->num_licence = $num_licence;
-        $this->code_sexe = $code_sexe;
-        $this->date_naissance = $date_naissance;
-        $this->adresse1 = $adresse1;
-        $this->adresse2 = $adresse2;
-        $this->adresse3 = $adresse3;
-        $this->nom_resp = $nom_resp;
-        $this->prenom_resp = $prenom_resp;
-        $this->code_statut = $code_statut;
+    public function __construct(array $row) {
+        $this->id_adherent = $row['id_utilisateur'];
+        $this->num_licence = $row['numero_licence'];
+        $this->code_sexe = $row['code_sexe'];
+        $this->date_naissance = $row['date_naissance'];
+        $this->adresse1 = $row['adresse1'];
+        $this->adresse2 = $row['adresse2'];
+        $this->adresse3 = $row['adresse3'];
+        $this->nom_resp = $row['nom_responsable'];
+        $this->prenom_resp = $row['prenom_responsable'];
+        $this->code_statut = $row['code_statut'];
+        $this->id_club = $row['id_club'];
     }
 
     public function getId_adherent(){
@@ -103,6 +105,14 @@ class Adherent {
 
 	public function setCode_statut($code_statut){
 		$this->code_statut = $code_statut;
-	}  
+    }
+    
+    public function getId_club(){
+		return $this->id_club;
+	}
+
+	public function setId_club($id_club){
+		$this->id_club = $id_club;
+	}
 
 }   
