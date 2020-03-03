@@ -46,7 +46,7 @@ $pdf = new PDF();
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("Montant des dons :"));
     $pdf->Ln();
-    $pdf->Cell(190, 7, utf8_decode(/*$note->total.*/"100 EUR"), 1, 0, 'C', true);
+    $pdf->Cell(190, 7, utf8_decode(/*$ligne->total.*/"100 EUR"), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Ln();
 
