@@ -62,7 +62,7 @@ $pdf = new PDF();
     }*/
     $pdf->SetFillColor(224,235,255);
     $pdf->SetDrawColor(33,150,243);
-    $pdf->Write(7, utf8_decode("Je soussigné BANDILELLA , demeurant au :".$row->getNom_resp()." ".$row->getPrenom_resp()));
+    $pdf->Write(7, utf8_decode("Je soussigné ".$row->getNom_resp()." ".$row->getPrenom_resp().", demeurant au :"));
     $pdf->Ln();
   $pdf->Cell(190, 7, utf8_decode($row->getAdresse1()), 1, 0, 'C', true);
     $pdf->Ln();
