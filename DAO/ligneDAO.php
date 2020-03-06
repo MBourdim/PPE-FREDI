@@ -89,7 +89,7 @@ Class LigneDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
-        return 'La ligne de frais à été modifié. Retourner à la <a href="display_notes.php">liste</a>';
+        return 'La ligne de frais a été modifié. Retourner à la <a href="display_notes.php">liste</a>';
 
         //header('Location: display_notes.php');
     }
@@ -151,7 +151,7 @@ Class LigneDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
-        return "La note à été mise à jour";
+        return "La note a été mise à jour";
     }
 
     //Suprimer une ligne de frais 
@@ -167,6 +167,6 @@ Class LigneDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
-        return "La ligne de frais à était supprimée";
+        return "La ligne de frais a été supprimée";
     }
 }

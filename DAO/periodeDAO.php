@@ -42,7 +42,7 @@ Class PeriodeDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
 
-        return 'La période à été modifié. Retourner à la <a href="liste_periode.php">liste</a>'; 
+        return 'La période a été modifié. Retourner à la <a href="liste_periode.php">liste</a>'; 
     }
 
     //Retourne toutes les periodes
