@@ -24,6 +24,12 @@ $id_adherent = isset($_GET['id']) ? $_GET["id"] : "";
 $adherent = new AdherentDAO();
 $row = $adherent->find($id_adherent);
 
+/*//Collection des ligne_de_frais
+$ligne_de_frais = new LigneDAO();
+$row = $ligne_de_frais->findAll();
+*/
+
+
 
 $error = '';
 
@@ -62,7 +68,7 @@ $pdf = new PDF();
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association: "));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode(/*$adherent->club->name*/"DOJO BURGIEN"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode(/*$row->club->name*/"DOJO BURGIEN"), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("en tant que don."));
     $pdf->Ln();
