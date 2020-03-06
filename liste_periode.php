@@ -61,7 +61,7 @@ if($submit) {
             foreach($rows as $row) { 
 
             echo '<div class="row" style="margin-bottom: 25px;">
-                <div class="col-md-4" style="height: 50px;"><a href="modifier_periode.php?annee='.$row->getAnnee().'"><button class="btn btn-primary" type="button" style="height: 100%; width: 100%">Modifier</button></a></div>
+                <div class="col-md-4" style="height: 50px;"><a href="modifier_periode.php?annee='.$row->getAnnee().'"><button class="btn btn-primary" type="button" style="height: 100%; width: 100%" '; if($row->getCodeStatut() == 0) { echo 'disabled'; } echo '>Modifier</button></a></div>
                 <div class="col-md-4" style="height: 50px;">
                     <p style="margin-top: 13px;">Période de l\'année:  '.$row->getAnnee().' / Tarif km: '.$row->getTarif().' €</p>
                 </div>
@@ -79,6 +79,13 @@ if($submit) {
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+    function supprimerLigne() {
+        if(confirm("Vouslez-vous supprimer la ligne de frais ?")) {
+            window.location.href = "display_notes.php?supprimer=<?php echo $row->get_id_ligne(); ?>";
+        }
+    }
+    </script>
 </body>
 
 </html>

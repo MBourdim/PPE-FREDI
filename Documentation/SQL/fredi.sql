@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 06 mars 2020 à 11:31
--- Version du serveur :  10.1.37-MariaDB
--- Version de PHP :  7.3.0
+-- Généré le :  ven. 06 mars 2020 à 11:41
+-- Version du serveur :  10.4.8-MariaDB
+-- Version de PHP :  7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -170,14 +170,10 @@ CREATE TABLE `ligne_de_frais` (
 --
 
 INSERT INTO `ligne_de_frais` (`id_ligne`, `date_frais`, `lib_trajet`, `cout_peage`, `cout_repas`, `cout_hebergement`, `nb_km`, `total_km`, `total_ligne`, `code_statut`, `id_motif`, `annee`, `id_note`) VALUES
-(10, '2019-12-17', 'Mazamet - Toulouse', '10', '10', '0', 100, '2100', '2120', 0, 0, 0, 0),
+(10, '2019-12-17', 'Mazamet - Toulouse', '10', '102222', '0', 100, '2100', '2120', 1, 1, 0, 0),
 (11, '2019-12-17', 'Mazamet - Toulouse', '10', '10', '0', 100, '2100', '2120', 0, 0, 2019, 0),
 (12, '2019-12-27', 'Mazamet', '343', '353557', '0', 100, '2100', '356000', 0, 2, 2019, 0),
-(13, '2019-12-05', 'Viviers-lès-Montagnes', '343', '353557', '0', 34, '714', '354614', 1, 4, 2019, 0),
-(14, '2019-12-05', 'Viviers-lès-Montagnes', '343', '353557', '0', 34, '714', '354614', 1, 4, 2019, 0),
-(15, '2019-12-05', 'Viviers-lès-Montagnes', '343', '353557', '0', 34, '714', '354614', 1, 4, 2019, 0),
-(16, '2019-12-05', 'Viviers-lès-Montagnes', '343', '353557', '0', 34, '714', '354614', 1, 4, 2019, 0),
-(17, '2020-02-25', 'Toulouse Millau ', '9', '5', '100', 180, '10080', '10144', 1, 5, 2020, 0);
+(19, '2020-03-06', 'test', '2', '50', '50', 200, '4000', '4102', 1, 1, 2020, 0);
 
 --
 -- Déclencheurs `ligne_de_frais`
@@ -192,6 +188,19 @@ SET NEW.total_km = toto * NEW.nb_km;
 
 SET NEW.total_ligne = NEW.total_km + NEW.cout_peage + NEW.cout_repas + NEW.cout_hebergement; 
     
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_update_tarif_total_km` BEFORE UPDATE ON `ligne_de_frais` FOR EACH ROW BEGIN
+DECLARE toto INT;
+
+SELECT forfait_km into toto FROM periode WHERE annee = YEAR(NEW.date_frais);
+
+SET NEW.total_km = toto * NEW.nb_km;
+
+SET NEW.total_ligne = NEW.total_km + NEW.cout_peage + NEW.cout_repas + NEW.cout_hebergement; 
+
 END
 $$
 DELIMITER ;
@@ -304,9 +313,9 @@ CREATE TABLE `periode` (
 
 INSERT INTO `periode` (`annee`, `forfait_km`, `code_statut`) VALUES
 (2019, '21', 0),
-(2020, '56', 0),
-(2021, '99', 0),
-(2052, '35', 1),
+(2020, '20', 1),
+(2021, '60', 0),
+(2052, '0', 0),
 (3030, '2', 0);
 
 -- --------------------------------------------------------
@@ -392,7 +401,7 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `password
 (40, 'ZUERO', 'THOMAS', 'ZUERO@ZUERO.fr', '$2y$10$Ct/CLAKYEGyLZm5SIJnkIeqeXx4rtH8o/UvDklcnv7kbowrr5fjwK', 1, 3),
 (100, 'Controlleur', 'Compte', 'compte@controlleur.fr', '$2y$10$4bV1UXHFo.Cisy5aNfHIC.xutl7mo2ty.jd1J5LAMNxobpPX7JvPG', 1, 2),
 (101, 'Administrateur', 'Compte', 'compte@administrateur.fr', '$2y$10$zU7N3JVr9vknvaQIEz2NuOizVH6Fu5XomQ8unmbDlSyGG6zcDHcPm', 1, 1),
-(102, 'Adherent', 'Compte', 'compte@adherent.fr', '$2y$10$4WhQCKmDVre9BtQ1B8.47ejYAVJ3VKMcmAV.Im4aasQ7O/BCMEZ3y', 1, 3);
+(102, 'Adherent', 'Compte', 'compte@adherent.fr', '$2y$10$6N6g7qPk0l1sCJtIfx85zeD3GhX831ZA1W5Nouph5KOLBtzm9LyqG', 1, 3);
 
 --
 -- Index pour les tables déchargées
@@ -483,7 +492,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT pour la table `ligne_de_frais`
 --
 ALTER TABLE `ligne_de_frais`
-  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `ligue`
@@ -513,7 +522,7 @@ ALTER TABLE `type_util`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- Contraintes pour les tables déchargées

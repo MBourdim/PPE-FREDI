@@ -79,7 +79,8 @@ if($submit) {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 text-center"><button class="btn btn-primary" type="submit" name="periodeForm" style="margin-top: 15%; width: 100%">Modifier la periode</button></div>
+                    <div class="col-md-12 text-center"><button class="btn btn-primary" type="submit" name="periodeForm" style="margin-top: 15%; width: 50%">Modifier la periode</button></div>
+                    <div class="col-md-12 text-center"><a class="btn btn-primary" style="margin-top: 25px; width: 50%" href="liste_periode.php">Annuler</a></div>
                 </div>
             </form>
         </div>
