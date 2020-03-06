@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
@@ -48,7 +48,7 @@ CREATE TABLE `adherent` (
 
 INSERT INTO `adherent` (`id_utilisateur`, `numero_licence`, `code_sexe`, `date_naissance`, `adresse1`, `adresse2`, `adresse3`, `nom_responsable`, `prenom_responsable`, `code_statut`, `id_club`) VALUES
 (1, ' 17 05 40 010 443', 'M', '1998-07-26', '30, rue Widric 1er', '54600', 'Villers les Nancy', 'BANDILELLA', 'CLEMENT', 0, 0),
-(2, ' 17 05 40 010 340', 'F', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'LUCILLE', 0, 0),
+(2, ' 17 05 40 010 340', 'F', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'LUCILLE', 1, 0),
 (3, ' 17 05 40 010 338', 'M', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'THEO', 0, 0),
 (4, ' 17 05 40 010 309', 'M', '1998-03-28', '1, rue des Mesanges', '54600', 'Villers les Nancy', 'BECKER', 'ROMAIN', 0, 0),
 (5, ' 17 05 40 010 334', 'F', '1962-12-09', '27, rue de Santifontaine', '54000', 'Nancy', 'BIACQUEL', 'VERONIQUE', 0, 0),
@@ -86,7 +86,10 @@ INSERT INTO `adherent` (`id_utilisateur`, `numero_licence`, `code_sexe`, `date_n
 (37, ' 17 05 40 010 405', 'M', '1997-10-13', '34, rue de Badonviller', '54000', 'Nancy', 'TORTEMANN', 'PIERRE', 0, 0),
 (38, ' 17 05 40 010 437', 'M', '2000-06-02', '15, rue de la Seille', '54320', 'Maxeville', 'ZOECKEL', 'MATHIEU', 0, 0),
 (39, ' 17 05 40 010 418', 'F', '1970-09-25', '8, sentier de Saint-Arriant', '54520', 'Laxou', 'ZUEL', 'STEPHANIE', 0, 0),
-(40, ' 17 05 40 010 448', 'M', '2000-08-14', 'immeuble Savoie', '54520', 'Laxou', 'ZUERO', 'THOMAS', 0, 0);
+(40, ' 17 05 40 010 448', 'M', '2000-08-14', 'immeuble Savoie', '54520', 'Laxou', 'ZUERO', 'THOMAS', 0, 0),
+(100, '17 05 40 010 449', 'M', '1995-09-04', '45 rue de limayrac', '54000', 'Laxou', 'CONTROLEUR', 'CONTROLEUR', 0, 0),
+(101, '17 05 40 010 450', 'M', '1995-09-05', '45 rue de limayrac', '54000', 'Laxou', 'ADMIN', 'ADMIN', 0, 0),
+(102, '17 05 40 010 451', 'M', '1995-09-06', '45 rue de limayrac', '54000', 'Laxou', 'ADHERENT', 'ADHERENT', 0, 0);
 
 -- --------------------------------------------------------
 
