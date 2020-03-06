@@ -3,6 +3,7 @@ include_once('DAO/bordereau_pdf.php');
 include_once('DAO/user.php');
 include_once('DAO/adherent.php');
 include_once('DAO/adherentDAO.php');
+require_once('DAO/ligneDAO.php');
 require_once('init.php');
 session_start();
 
@@ -24,10 +25,9 @@ $id_adherent = isset($_GET['id']) ? $_GET["id"] : "";
 $adherent = new AdherentDAO();
 $row = $adherent->find($id_adherent);
 
-/*//Collection des ligne_de_frais
+//Collection des ligne_de_frais
 $ligne_de_frais = new LigneDAO();
 $row = $ligne_de_frais->findAll();
-*/
 
 
 
