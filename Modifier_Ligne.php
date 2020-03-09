@@ -71,25 +71,25 @@ if($submit) {
             </div>
     <form method="POST">
             <div class="row">
-                <div class="col-md-6" style="padding: 0px;width: 555px;height: 120px;"><input type="date" name="date_frais" value="<?php echo $uneLigne->getDate_frais(); ?>" style="padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);width: 260px;height: 50px;margin: 60px;padding-top: 10px;margin-right: 60px;margin-top: 40px;" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>></div>
-                <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_repas" value="<?php echo $uneLigne->getCout_repas(); ?>" style="width: 260px;height: 50px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);text-align: left;margin: 60px;margin-top: 40px;" placeholder="Coûts repas (€)" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>></div>
+                <div class="col-md-6" style="padding: 0px;width: 555px;height: 120px;"><input type="date" name="date_frais" value="<?php echo $uneLigne->getDate_frais(); ?>" style="padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);width: 260px;height: 50px;margin: 60px;padding-top: 10px;margin-right: 60px;margin-top: 40px;" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>></div>
+                <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_repas" value="<?php echo $uneLigne->getCout_repas(); ?>" style="width: 260px;height: 50px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);text-align: left;margin: 60px;margin-top: 40px;" placeholder="Coûts repas (€)" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>></div>
             </div>
         </div>
     </div>
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6" style="margin: 0px;width: 555px;padding: 0px;height: 120px;"><input type="text" name="lib_trajet" value="<?php echo $uneLigne->getLib_trajet(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;margin-left: 60px;" placeholder="Trajet (Km)" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>></div>
-                <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_peage" value="<?php echo $uneLigne->getCout_peage(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;" placeholder="Coûts péages (€)" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>></div>
+                <div class="col-md-6" style="margin: 0px;width: 555px;padding: 0px;height: 120px;"><input type="text" name="lib_trajet" value="<?php echo $uneLigne->getLib_trajet(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;margin-left: 60px;" placeholder="Trajet (Km)" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>></div>
+                <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_peage" value="<?php echo $uneLigne->getCout_peage(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;" placeholder="Coûts péages (€)" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>></div>
             </div>
         </div>
     </div>
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="nb_km" value="<?php echo $uneLigne->get_nb_km(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-left: 45px;margin-top: 40px;" placeholder="Kms parcourus (Km)" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>></div>
+                <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="nb_km" value="<?php echo $uneLigne->get_nb_km(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-left: 45px;margin-top: 40px;" placeholder="Kms parcourus (Km)" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>></div>
                 <div class="col-md-6"
-                    style="width: 555px;height: 120px;"><input type="text" name="total_km" value="<?php echo $uneLigne->get_total_km(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;" placeholder="Total Frais Kms (€)" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>></div>
+                    style="width: 555px;height: 120px;"><input type="text" name="total_km" value="<?php echo $uneLigne->get_total_km(); ?>" style="width: 260px;height: 50px;margin: 60px;padding: 10px 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);margin-top: 40px;" placeholder="Total Frais Kms (€)" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>></div>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@ if($submit) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6" style="width: 555px;height: 150px;">
-                    <select name="id_motif" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>>
+                    <select name="id_motif" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>>
                         <option value="1" <?php if($uneLigne->get_id_motif() == 1) { echo "selected"; }?>>Réunion</option>
                         <option value="2" <?php if($uneLigne->get_id_motif() == 2) { echo "selected"; }?>>Compétition Régionale</option>
                         <option value="3" <?php if($uneLigne->get_id_motif() == 3) { echo "selected"; }?>>Compétition Nationale</option>
@@ -105,7 +105,7 @@ if($submit) {
                         <option value="5" <?php if($uneLigne->get_id_motif() == 5) { echo "selected"; }?>>Stage</option>
                     </select>
                 </div>
-            <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_hebergement" value="<?php echo $uneLigne->getCout_hebergement(); ?>" style="margin: 60px;width: 260px;height: 50px;padding: 10px 40px;margin-top: 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);" placeholder="Coûts hébergement (€)" <?php if ($user->getTypeUser() == 2) { echo 'disabled'; } ?>></div>
+            <div class="col-md-6" style="width: 555px;height: 120px;"><input type="text" name="cout_hebergement" value="<?php echo $uneLigne->getCout_hebergement(); ?>" style="margin: 60px;width: 260px;height: 50px;padding: 10px 40px;margin-top: 40px;background-color: rgb(247,249,252);color: rgb(80,94,108);" placeholder="Coûts hébergement (€)" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>></div>
         </div>
     </div>
     </div>
@@ -113,7 +113,7 @@ if($submit) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6" style="height: 120px;width: 555px;">
-                <select name="code_statut">
+                <select name="code_statut" <?php if ($user->getTypeUser() == 2 || $uneLigne->get_code_statut() == 2) { echo 'disabled'; } ?>>
                     <option value="1" <?php if($uneLigne->get_code_statut() == 1) { echo "selected"; }?>>En cours</option>
                     <option value="2" <?php if($uneLigne->get_code_statut() == 2) { echo "selected"; }?>>Validée</option>
                     <?php if($user->getTypeUser() != 3) { echo '<option value="3" '; if($uneLigne->get_code_statut() == 3) { echo "selected"; } echo '>Contrôlée</option>'; } ?>
