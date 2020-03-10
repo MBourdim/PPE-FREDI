@@ -116,6 +116,33 @@ Class LigneDAO extends DAO {
         return $lignes;
     }
 
+    //Retourne toutes les lignes par autheur
+    public function findByAuthor($id) {
+        $sql = "SELECT L.date_frais, M.libelle, L.total_ligne
+                FROM ligne_de_frais AS L, motif_de_frais AS M, note AS N, utilisateur AS U
+                WHERE L.id_note = N.id_note
+                AND N.id_utilisateur = U.id_utilisateur
+                AND L.id_motif = M.id_motif
+                AND U.id_utilisateur = :id";
+
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(':id' => $id));
+            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+
+        $lignes = array();
+
+        foreach ($rows as $row) {
+            $lignes[] = new Ligne($row);
+        }
+
+        // Retourne un tableau d'objets
+        return $lignes;
+    }
+
     //Desactive une ligne_de_frais
     public function desactiverLigne($id_ligne) {
         $sql = "UPDATE ligne_de_frais SET code_statut = 0 WHERE id_ligne = :id_ligne";

@@ -34,6 +34,7 @@ $submit = isset($_POST['ligneForm']);
 
 $error = '';
 
+//si le formulaire est validé on update notre lignedao
 if($submit) {
     $ligne = new LigneDAO();
     $error = $ligne->updateLigne($date_frais, $lib_trajet, $cout_peage, $cout_repas, $cout_hebergement, $nb_km, $total_km, $total_ligne, $code_statut,

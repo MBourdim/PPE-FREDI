@@ -23,11 +23,11 @@ if (isset($_SESSION['user'])) {
 $id_adherent = isset($_GET['id']) ? $_GET["id"] : "";
 //Collection des adherent
 $adherent = new AdherentDAO();
-$row = $adherent->find($id_adherent);
+$unAdherent = $adherent->find($id_adherent);
 
 //Collection des ligne_de_frais
 $ligne_de_frais = new LigneDAO();
-$row = $ligne_de_frais->findAll();
+$uneLigne = $ligne_de_frais->findByAuthor($id_adherent);
 
 
 
@@ -46,7 +46,7 @@ if($_GET['id_ligne'] == '') {
 $pdf = new PDF();
     $pdf->SetFont('Arial','',11);
     $pdf->AddPage();
-
+ 
     // Titres des colonnes
     $header = array(
         Array('width' => '30', 'content' => 'Date'),
@@ -62,9 +62,9 @@ $pdf = new PDF();
     }*/
     $pdf->SetFillColor(224,235,255);
     $pdf->SetDrawColor(33,150,243);
-    $pdf->Write(7, utf8_decode("Je soussigné BANDILELLA , demeurant au : kjsgfkjsfbgkg"));
+    $pdf->Write(7, utf8_decode("Je soussigné ".$unAdherent->getNom_resp()." , demeurant au : "));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode("kjbdkfdbkg"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode($unAdherent->getAdresse1()), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association: "));
     $pdf->Ln();
@@ -75,7 +75,7 @@ $pdf = new PDF();
     $pdf->Ln();
     //Tableau
   $pdf->FancyTable($header/*,$data*/);
-  $pdf->Total(/*$ligne->total*/"ex : 260,50 EUR");
+  $pdf->Total("100 EUR");
     $pdf->Ln();
     $pdf->Ln();
 
@@ -84,7 +84,7 @@ $pdf = new PDF();
     $pdf->SetDrawColor(33,150,243);
     $pdf->Write(7, utf8_decode("Mon numéro de licence est le suivant :"));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode("lngjlsf"), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode($unAdherent->getNum_licence()), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("Montant des dons :"));
     $pdf->Ln();
