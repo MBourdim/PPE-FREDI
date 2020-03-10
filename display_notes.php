@@ -22,7 +22,9 @@ $error = '';
 
 //Collection des ligne_de_frais
 $ligne_de_frais = new LigneDAO();
-$rows = $ligne_de_frais->findAll();
+$rows = $ligne_de_frais->findByAuthor($user->getId());
+
+$note = new LigneDAO();
 
 //On verifie si on veut supprimer une ligne de frais
 if (isset($_GET['supprimer'])) {

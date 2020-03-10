@@ -25,7 +25,7 @@ $submit = isset($_POST['ligneForm']);
 
 if($submit) {
     $ligne = new LigneDAO();
-    $error = $ligne->createLigne($date_frais, $lib_trajet, $cout_peage, $cout_repas, $cout_hebergement, $nb_km, $id_motif);
+    $error = $ligne->createLigne($date_frais, $lib_trajet, $cout_peage, $cout_repas, $cout_hebergement, $nb_km, $id_motif, $user->getId());
 }
 
 ?>
