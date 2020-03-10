@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 06 mars 2020 à 11:41
+-- Généré le :  mar. 10 mars 2020 à 14:44
 -- Version du serveur :  10.4.8-MariaDB
 -- Version de PHP :  7.3.11
 
@@ -48,7 +48,7 @@ CREATE TABLE `adherent` (
 
 INSERT INTO `adherent` (`id_utilisateur`, `numero_licence`, `code_sexe`, `date_naissance`, `adresse1`, `adresse2`, `adresse3`, `nom_responsable`, `prenom_responsable`, `code_statut`, `id_club`) VALUES
 (1, ' 17 05 40 010 443', 'M', '1998-07-26', '30, rue Widric 1er', '54600', 'Villers les Nancy', 'BANDILELLA', 'CLEMENT', 0, 0),
-(2, ' 17 05 40 010 340', 'F', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'LUCILLE', 1, 0),
+(2, ' 17 05 40 010 340', 'F', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'LUCILLE', 0, 0),
 (3, ' 17 05 40 010 338', 'M', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'THEO', 0, 0),
 (4, ' 17 05 40 010 309', 'M', '1998-03-28', '1, rue des Mesanges', '54600', 'Villers les Nancy', 'BECKER', 'ROMAIN', 0, 0),
 (5, ' 17 05 40 010 334', 'F', '1962-12-09', '27, rue de Santifontaine', '54000', 'Nancy', 'BIACQUEL', 'VERONIQUE', 0, 0),
@@ -86,10 +86,7 @@ INSERT INTO `adherent` (`id_utilisateur`, `numero_licence`, `code_sexe`, `date_n
 (37, ' 17 05 40 010 405', 'M', '1997-10-13', '34, rue de Badonviller', '54000', 'Nancy', 'TORTEMANN', 'PIERRE', 0, 0),
 (38, ' 17 05 40 010 437', 'M', '2000-06-02', '15, rue de la Seille', '54320', 'Maxeville', 'ZOECKEL', 'MATHIEU', 0, 0),
 (39, ' 17 05 40 010 418', 'F', '1970-09-25', '8, sentier de Saint-Arriant', '54520', 'Laxou', 'ZUEL', 'STEPHANIE', 0, 0),
-(40, ' 17 05 40 010 448', 'M', '2000-08-14', 'immeuble Savoie', '54520', 'Laxou', 'ZUERO', 'THOMAS', 0, 0),
-(100, '17 05 40 010 449', 'M', '1995-09-04', '45 rue de limayrac', '54000', 'Laxou', 'CONTROLEUR', 'CONTROLEUR', 0, 0),
-(101, '17 05 40 010 450', 'M', '1995-09-05', '45 rue de limayrac', '54000', 'Laxou', 'ADMIN', 'ADMIN', 0, 0),
-(102, '17 05 40 010 451', 'M', '1995-09-06', '45 rue de limayrac', '54000', 'Laxou', 'ADHERENT', 'ADHERENT', 0, 0);
+(40, ' 17 05 40 010 448', 'M', '2000-08-14', 'immeuble Savoie', '54520', 'Laxou', 'ZUERO', 'THOMAS', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -172,8 +169,10 @@ CREATE TABLE `ligne_de_frais` (
 INSERT INTO `ligne_de_frais` (`id_ligne`, `date_frais`, `lib_trajet`, `cout_peage`, `cout_repas`, `cout_hebergement`, `nb_km`, `total_km`, `total_ligne`, `code_statut`, `id_motif`, `annee`, `id_note`) VALUES
 (10, '2019-12-17', 'Mazamet - Toulouse', '10', '102222', '0', 100, '2100', '2120', 1, 1, 0, 0),
 (11, '2019-12-17', 'Mazamet - Toulouse', '10', '10', '0', 100, '2100', '2120', 0, 0, 2019, 0),
-(12, '2019-12-27', 'Mazamet', '343', '353557', '0', 100, '2100', '356000', 0, 2, 2019, 0),
-(19, '2020-03-06', 'test', '2', '50', '50', 200, '4000', '4102', 1, 1, 2020, 0);
+(12, '2019-12-27', 'Mazamet', '20', '353557', '0', 100, '2100', '355677', 1, 2, 2019, 0),
+(20, '2022-01-01', 'Aveyron - Ariege', '54', '13', '50', 220, '440', '557', 1, 1, 2022, 0),
+(21, '2022-03-01', 'Millau - Bordeaux', '100', '520', '600', 320, '640', '1860', 1, 3, 2022, 0),
+(22, '2020-03-04', 'Millau Toulouse', '9', '30', '50', 200, '4200', '4289', 1, 1, 2020, 4);
 
 --
 -- Déclencheurs `ligne_de_frais`
@@ -293,7 +292,8 @@ CREATE TABLE `note` (
 
 INSERT INTO `note` (`id_note`, `date_remise`, `total`, `code_statut`, `id_utilisateur`) VALUES
 (1, '2019-12-17', 0, 0, 1),
-(2, '2019-12-17', 0, 0, 35);
+(2, '2019-12-17', 0, 0, 35),
+(4, '2020-03-04', 0, 1, 104);
 
 -- --------------------------------------------------------
 
@@ -303,7 +303,7 @@ INSERT INTO `note` (`id_note`, `date_remise`, `total`, `code_statut`, `id_utilis
 
 CREATE TABLE `periode` (
   `annee` int(11) NOT NULL,
-  `forfait_km` decimal(10,0) NOT NULL,
+  `forfait_km` decimal(10,2) NOT NULL,
   `code_statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -312,11 +312,12 @@ CREATE TABLE `periode` (
 --
 
 INSERT INTO `periode` (`annee`, `forfait_km`, `code_statut`) VALUES
-(2019, '21', 0),
-(2020, '20', 1),
-(2021, '60', 0),
-(2052, '0', 0),
-(3030, '2', 0);
+(2019, '21.00', 0),
+(2020, '20.56', 1),
+(2021, '60.00', 0),
+(2022, '1.50', 1),
+(2052, '0.00', 0),
+(3030, '2.00', 0);
 
 -- --------------------------------------------------------
 
@@ -401,7 +402,8 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `password
 (40, 'ZUERO', 'THOMAS', 'ZUERO@ZUERO.fr', '$2y$10$Ct/CLAKYEGyLZm5SIJnkIeqeXx4rtH8o/UvDklcnv7kbowrr5fjwK', 1, 3),
 (100, 'Controlleur', 'Compte', 'compte@controlleur.fr', '$2y$10$4bV1UXHFo.Cisy5aNfHIC.xutl7mo2ty.jd1J5LAMNxobpPX7JvPG', 1, 2),
 (101, 'Administrateur', 'Compte', 'compte@administrateur.fr', '$2y$10$zU7N3JVr9vknvaQIEz2NuOizVH6Fu5XomQ8unmbDlSyGG6zcDHcPm', 1, 1),
-(102, 'Adherent', 'Compte', 'compte@adherent.fr', '$2y$10$6N6g7qPk0l1sCJtIfx85zeD3GhX831ZA1W5Nouph5KOLBtzm9LyqG', 1, 3);
+(102, 'Adherent', 'Compte', 'compte@adherent.fr', '$2y$10$6N6g7qPk0l1sCJtIfx85zeD3GhX831ZA1W5Nouph5KOLBtzm9LyqG', 1, 3),
+(104, 'TOM', 'TOM', 'TOM@TOM.fr', '$2y$10$APocNP6nDR.B52eALimeDu6Pxrm8BOzqPeBypNERgu4kEDdGSkbJO', 1, 3);
 
 --
 -- Index pour les tables déchargées
@@ -456,8 +458,7 @@ ALTER TABLE `motif_de_frais`
 -- Index pour la table `note`
 --
 ALTER TABLE `note`
-  ADD PRIMARY KEY (`id_note`),
-  ADD KEY `note_adherent_FK` (`id_utilisateur`);
+  ADD PRIMARY KEY (`id_note`);
 
 --
 -- Index pour la table `periode`
@@ -492,7 +493,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT pour la table `ligne_de_frais`
 --
 ALTER TABLE `ligne_de_frais`
-  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `ligue`
@@ -510,7 +511,7 @@ ALTER TABLE `motif_de_frais`
 -- AUTO_INCREMENT pour la table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id_note` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_note` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `type_util`
@@ -522,7 +523,7 @@ ALTER TABLE `type_util`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- Contraintes pour les tables déchargées
