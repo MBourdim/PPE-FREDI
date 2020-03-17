@@ -22,7 +22,9 @@ $error = '';
 
 //Collection des ligne_de_frais
 $ligne_de_frais = new LigneDAO();
-$rows = $ligne_de_frais->findAll();
+$rows = $ligne_de_frais->findByAuthor($user->getId());
+
+$note = new LigneDAO();
 
 //On verifie si on veut supprimer une ligne de frais
 if (isset($_GET['supprimer'])) {
@@ -90,13 +92,11 @@ if (isset($_GET['supprimer'])) {
                 foreach ($rows as $row) { ?>
                     <div class="col-md-4">
                         <!---bouton modifier une ligne de frais-->
-                        <a href="Modifier_Ligne.php?id_ligne=<?php echo $row->get_id_ligne(); ?>">
-                            <button class="btn btn-primary border rounded-0 float-right" type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;" <?php if ($user->getTypeUser() == 1) {
+                            <button class="btn btn-primary border rounded-0 float-right" onclick="modifierLigne()"type="button" style="width: 230px;margin: 0px;height: 48px;padding: 6px 12px;min-height: 0px;max-height: none;margin-left: 6px;margin-right: 50px;margin-bottom: 9px;" <?php if ($user->getTypeUser() == 1) {
                                                                                                                                                                                                                                                                         echo 'disabled';
                                                                                                                                                                                                                                                                     } ?>>
                                 Modifier
                             </button>
-                        </a>
                     </div>
                     <!---bouton afficher ligne de frais-->
                     <div class="col-md-4" style="padding-right: 0px;padding-top: 10px;">
@@ -118,9 +118,17 @@ if (isset($_GET['supprimer'])) {
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script>
+        //Confirmation pour la suppression d'une ligne
         function supprimerLigne() {
-            if (confirm("Vouslez-vous supprimer la ligne de frais ?")) {
+            if (confirm("Voulez-vous supprimer la ligne de frais ?")) {
                 window.location.href = "display_notes.php?supprimer=<?php echo $row->get_id_ligne(); ?>";
+            }
+        }
+
+        //Confiramtion pour la modification d'une ligne
+        function modifierLigne() {
+            if (confirm("Voulez-vous modifier la ligne de frais ?")) {
+                window.location.href = "Modifier_Ligne.php?id_ligne=<?php echo $row->get_id_ligne(); ?>";
             }
         }
     </script>

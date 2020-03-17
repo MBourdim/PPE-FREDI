@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 09 mars 2020 à 16:47
--- Version du serveur :  10.1.37-MariaDB
--- Version de PHP :  7.3.0
+-- Généré le :  mar. 10 mars 2020 à 14:44
+-- Version du serveur :  10.4.8-MariaDB
+-- Version de PHP :  7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `fredi`
 --
+
+
+CREATE DATABASE IF NOT EXISTS "fredi" DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE "fredi";
 
 -- --------------------------------------------------------
 
@@ -190,8 +194,10 @@ CREATE TABLE `ligne_de_frais` (
 INSERT INTO `ligne_de_frais` (`id_ligne`, `date_frais`, `lib_trajet`, `cout_peage`, `cout_repas`, `cout_hebergement`, `nb_km`, `total_km`, `total_ligne`, `code_statut`, `id_motif`, `annee`, `id_note`) VALUES
 (10, '2019-12-17', 'Mazamet - Toulouse', '10', '102222', '0', 100, '2100', '2120', 1, 1, 0, 0),
 (11, '2019-12-17', 'Mazamet - Toulouse', '10', '10', '0', 100, '2100', '2120', 0, 0, 2019, 0),
-(12, '2019-12-27', 'Mazamet', '343', '353557', '0', 100, '2100', '356000', 0, 2, 2019, 0),
-(19, '2020-03-06', 'test', '2', '50', '50', 200, '4000', '4102', 1, 1, 2020, 0);
+(12, '2019-12-27', 'Mazamet', '20', '353557', '0', 100, '2100', '355677', 1, 2, 2019, 0),
+(20, '2022-01-01', 'Aveyron - Ariege', '54', '13', '50', 220, '440', '557', 1, 1, 2022, 0),
+(21, '2022-03-01', 'Millau - Bordeaux', '100', '520', '600', 320, '640', '1860', 1, 3, 2022, 0),
+(22, '2020-03-04', 'Millau Toulouse', '9', '30', '50', 200, '4200', '4289', 1, 1, 2020, 4);
 
 -- --------------------------------------------------------
 
@@ -281,7 +287,8 @@ CREATE TABLE `note` (
 
 INSERT INTO `note` (`id_note`, `date_remise`, `total`, `code_statut`, `id_utilisateur`) VALUES
 (1, '2019-12-17', 0, 0, 1),
-(2, '2019-12-17', 0, 0, 35);
+(2, '2019-12-17', 0, 0, 35),
+(4, '2020-03-04', 0, 1, 104);
 
 -- --------------------------------------------------------
 
@@ -291,7 +298,7 @@ INSERT INTO `note` (`id_note`, `date_remise`, `total`, `code_statut`, `id_utilis
 
 CREATE TABLE `periode` (
   `annee` int(11) NOT NULL,
-  `forfait_km` decimal(10,0) NOT NULL,
+  `forfait_km` decimal(10,2) NOT NULL,
   `code_statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -300,11 +307,12 @@ CREATE TABLE `periode` (
 --
 
 INSERT INTO `periode` (`annee`, `forfait_km`, `code_statut`) VALUES
-(2019, '21', 0),
-(2020, '20', 1),
-(2021, '60', 0),
-(2052, '0', 0),
-(3030, '2', 0);
+(2019, '21.00', 0),
+(2020, '20.56', 1),
+(2021, '60.00', 0),
+(2022, '1.50', 1),
+(2052, '0.00', 0),
+(3030, '2.00', 0);
 
 -- --------------------------------------------------------
 
@@ -450,8 +458,7 @@ ALTER TABLE `motif_de_frais`
 -- Index pour la table `note`
 --
 ALTER TABLE `note`
-  ADD PRIMARY KEY (`id_note`),
-  ADD KEY `note_adherent_FK` (`id_utilisateur`);
+  ADD PRIMARY KEY (`id_note`);
 
 --
 -- Index pour la table `periode`
@@ -486,7 +493,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT pour la table `ligne_de_frais`
 --
 ALTER TABLE `ligne_de_frais`
-  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `ligue`
@@ -504,7 +511,7 @@ ALTER TABLE `motif_de_frais`
 -- AUTO_INCREMENT pour la table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id_note` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_note` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `type_util`
@@ -516,7 +523,7 @@ ALTER TABLE `type_util`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- Contraintes pour les tables déchargées
