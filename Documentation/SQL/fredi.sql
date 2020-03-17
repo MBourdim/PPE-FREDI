@@ -23,8 +23,8 @@ SET time_zone = "+00:00";
 --
 
 
-CREATE DATABASE IF NOT EXISTS "fredi" DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE "fredi";
+CREATE DATABASE IF NOT EXISTS fredi DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE fredi;
 
 -- --------------------------------------------------------
 
