@@ -29,7 +29,7 @@ $unAdherent = $adherent->find($id_adherent);
 $ligne_de_frais = new LigneDAO();
 $uneLigne = $ligne_de_frais->findByAuthor($id_adherent);
 
-
+//var_dump($ligne_de_frais);
 
 $error = '';
 
@@ -48,7 +48,7 @@ $pdf = new PDF();
     $pdf->AddPage();
  
     // Titres des colonnes
-    $header = array(
+    /*$header = array(
         Array('width' => '30', 'content' => 'Date'),
         Array('width' => '80', 'content' => 'Motif'),
         Array('width' => '50', 'content' => 'Type'),
@@ -64,7 +64,7 @@ $pdf = new PDF();
     $pdf->SetDrawColor(33,150,243);
     $pdf->Write(7, utf8_decode("Je soussigné ".$unAdherent->getNom_resp()." ".$unAdherent->getPrenom_Resp().", demeurant au : "));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode($unAdherent->getAdresse1(), $unAdherent->getAdresse2(), $unAdherent->getAdresse3()), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode("".$unAdherent->getAdresse1()."  ".$unAdherent->getAdresse2()."  ".$unAdherent->getAdresse3().""), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association: "));
     $pdf->Ln();
@@ -74,11 +74,55 @@ $pdf = new PDF();
     $pdf->Ln();
     $pdf->Ln();
     //Tableau
-  $pdf->FancyTable($header/*,$data*/);
-  $pdf->Total("100 EUR");
-    $pdf->Ln();
-    $pdf->Ln();
+  /*$pdf->FancyTable($header/*,$data);
+     
+    /************************************************************************************************** */
+    // Entête de la liste
+  //$pdf->SetFont('Arial', 'B', 10);
+  $pdf->Cell(25, 10, "Date", 'B', 0, 'C');
+  $pdf->Cell(30, 10, "Motif", 'B', 0, 'C');
+  $pdf->Cell(20, 10, "Trajet", 'B', 0, 'C');
+  $pdf->Cell(20, 10, "Kms", 'B', 0, 'C');
+  $pdf->Cell(20, 10, "Cout Trajet", 'B', 0, 'C');
+  $pdf->Cell(20, 10, "Peages", 'B', 0, 'C');
+  $pdf->Cell(20, 10, "Repas", 'B', 0, 'C');
+  $pdf->Cell(20, 10, "Hebergement", 'B', 0, 'C');
+  $pdf->Cell(20, 10, "Total", 'B', 1, 'C');
+  
+  $montant_total = 0;
+  foreach ($ligne_de_frais as $uneLigne) {
+    $trajet_frais = $uneLigne->getLib_frais();
+    $date_frais = $uneLigne->getDate_frais();
+    $km_parcourus = $uneLigne->get_nb_km();
+    $prix_km = $uneLigne->get_total_km();
+    $cout_peage = $uneLigne->getCout_peage();
+    $cout_repas = $uneLigne->getCout_repas();
+    $cout_hebergement = $uneLigne->getCout_hebergement();
+    $libelle_motif = $uneLigne->get_id_motif();
+    $prix_total = $uneLigne->get_total_ligne();
+    $montant_total= $montant_total + $prix_total;
+    
+    // Liste des employés
+  $pdf->SetFont('Arial', '', 8);
+  $pdf->Cell(25, 10, utf8_decode($date_frais),1, 0, 'C',1);
+  $pdf->Cell(30, 10, utf8_decode($libelle_motif), 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($trajet_frais), 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($km_parcourus), 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($prix_km), 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($cout_peage), 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($cout_repas), 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($cout_hebergement), 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($prix_total), 1, 1, 'C',1);
+  }
+  
+  $pdf->Cell(175, 10, "Montant des frais de deplacement", 1, 0, 'C');
+  $pdf->Cell(20, 10, utf8_decode($montant_total), 1, 1, 'C',1);
 
+  /*********************************************************************************************** */
+  
+    /*$pdf->Ln();
+    $pdf->Ln();
+    $pdf->Total("100 EUR");*/
     $pdf->SetTextColor(10,105,182);
     $pdf->SetFillColor(224,235,255);
     $pdf->SetDrawColor(33,150,243);
@@ -125,3 +169,4 @@ $pdf = new PDF();
     // $file = $pdf->Output("F", 'outfiles/bordereau_pdf.pdf'/*.$id.*/);
     //$link = "outfiles/bordereau_pdf.pdf";
     $pdf->Output();    
+    ?> 
