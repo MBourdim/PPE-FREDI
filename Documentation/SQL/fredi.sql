@@ -1,48 +1,44 @@
-CREATE DATABASE IF NOT EXISTS fredi;
-USE fredi;
 -- phpMyAdmin SQL Dump
--- version 4.9.1
--- version 4.8.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  ven. 06 mars 2020 à 11:41
--- Version du serveur :  10.4.8-MariaDB
--- Version de PHP :  7.3.11
+-- Host: localhost:8889
+-- Generation Time: Mar 31, 2020 at 12:05 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.8
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Base de données :  fredi
+-- Database: `fredi`
 --
 
 -- --------------------------------------------------------
+
 --
--- Structure de la table adherent
---
-CREATE TABLE adherent (
-  id_utilisateur int(11) NOT NULL,
-  numero_licence varchar(50) NOT NULL,
-  code_sexe varchar(1) NOT NULL,
-  date_naissance date NOT NULL,
-  adresse1 varchar(50) NOT NULL,
-  adresse2 varchar(50) NOT NULL,
-  adresse3 varchar(50) NOT NULL,
-  nom_responsable varchar(20) NOT NULL,
-  prenom_responsable varchar(20) NOT NULL,
-  code_statut tinyint(1) NOT NULL,
-  id_club int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
---
--- Déchargement des données de la table adherent
+-- Table structure for table `adherent`
 --
 
-INSERT INTO adherent (id_utilisateur, numero_licence, code_sexe, date_naissance, adresse1, adresse2, adresse3, nom_responsable, prenom_responsable, code_statut, id_club) VALUES
+CREATE TABLE `adherent` (
+  `id_utilisateur` int(11) NOT NULL,
+  `numero_licence` varchar(50) NOT NULL,
+  `code_sexe` varchar(1) NOT NULL,
+  `date_naissance` date NOT NULL,
+  `adresse1` varchar(50) NOT NULL,
+  `adresse2` varchar(50) NOT NULL,
+  `adresse3` varchar(50) NOT NULL,
+  `nom_responsable` varchar(20) NOT NULL,
+  `prenom_responsable` varchar(20) NOT NULL,
+  `code_statut` tinyint(1) NOT NULL,
+  `id_club` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `adherent`
+--
+
+INSERT INTO `adherent` (`id_utilisateur`, `numero_licence`, `code_sexe`, `date_naissance`, `adresse1`, `adresse2`, `adresse3`, `nom_responsable`, `prenom_responsable`, `code_statut`, `id_club`) VALUES
 (1, ' 17 05 40 010 443', 'M', '1998-07-26', '30, rue Widric 1er', '54600', 'Villers les Nancy', 'BANDILELLA', 'CLEMENT', 0, 0),
 (2, ' 17 05 40 010 340', 'F', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'LUCILLE', 0, 0),
 (3, ' 17 05 40 010 338', 'M', '1998-03-24', '12, rue de Marron', '54600', 'Villers les Nancy', 'BERBIER', 'THEO', 0, 0),
@@ -90,28 +86,34 @@ INSERT INTO adherent (id_utilisateur, numero_licence, code_sexe, date_naissance,
 -- --------------------------------------------------------
 
 --
--- Structure de la table administrateur
+-- Table structure for table `administrateur`
 --
-CREATE TABLE administrateur (
-  id_utilisateur int(11) NOT NULL
+
+CREATE TABLE `administrateur` (
+  `id_utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table club
+-- Table structure for table `club`
 --
-CREATE TABLE club (
-  id_club int(11) NOT NULL,
-  libelle varchar(50) NOT NULL,
-  adresse1 varchar(50) NOT NULL,
-  adresse2 varchar(50) NOT NULL,
-  adresse3 varchar(50) NOT NULL,
-  id_ligue int(11) NOT NULL,
-  id_utilisateur int(11) NOT NULL
+
+CREATE TABLE `club` (
+  `id_club` int(11) NOT NULL,
+  `libelle` varchar(50) NOT NULL,
+  `adresse1` varchar(50) NOT NULL,
+  `adresse2` varchar(50) NOT NULL,
+  `adresse3` varchar(50) NOT NULL,
+  `id_ligue` int(11) NOT NULL,
+  `id_utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table club
+-- Dumping data for table `club`
 --
-INSERT INTO club (id_club, libelle, adresse1, adresse2, adresse3, id_ligue, id_utilisateur) VALUES
+
+INSERT INTO `club` (`id_club`, `libelle`, `adresse1`, `adresse2`, `adresse3`, `id_ligue`, `id_utilisateur`) VALUES
 (1, 'DOJO BURGIEN', '1 RUE DU DR DUBY', '1000', 'BOURG EN BRESSE', 0, 0),
 (2, 'SAINT DENIS DOJO', '239 ALLEES DES SPORTS', '1000', 'ST DENIS LES BOURG', 0, 0),
 (3, 'JUDO CLUB VALLEE ARBENT', 'RUE DU GENERAL ANDREA', '1100', 'ARBENT', 0, 0),
@@ -121,43 +123,52 @@ INSERT INTO club (id_club, libelle, adresse1, adresse2, adresse3, id_ligue, id_u
 (7, 'JUDO CLUB ORNEX', '58 RUE DES PRALETS', '1210', 'ORNEX', 0, 0),
 (8, 'DOJO GESSIEN VALSERINE', 'AVENUE DES VOIRONS', '1220', 'DIVONNE LES BAINS', 0, 0),
 (9, 'DOJO LA VALLIERE', 'COMPLEXE SPORTIF', '1250', 'MONTAGNAT', 0, 0);
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table controleur
+-- Table structure for table `controleur`
 --
-CREATE TABLE controleur (
-  id_utilisateur int(11) NOT NULL,
-  Matricule_CONT varchar(50) NOT NULL
+
+CREATE TABLE `controleur` (
+  `id_utilisateur` int(11) NOT NULL,
+  `Matricule_CONT` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table ligne_de_frais
+-- Table structure for table `ligne_de_frais`
 --
-CREATE TABLE ligne_de_frais (
-  id_ligne int(11) NOT NULL,
-  date_frais date NOT NULL,
-  lib_trajet varchar(50) NOT NULL,
-  cout_peage decimal(10,0) NOT NULL,
-  cout_repas decimal(10,0) NOT NULL,
-  cout_hebergement decimal(10,0) NOT NULL,
-  nb_km int(11) NOT NULL,
-  total_km decimal(10,0) NOT NULL,
-  total_ligne decimal(10,0) NOT NULL,
-  code_statut int(11) NOT NULL,
-  id_motif int(11) NOT NULL,
-  annee int(11) NOT NULL,
-  id_note int(11) NOT NULL
+
+CREATE TABLE `ligne_de_frais` (
+  `id_ligne` int(11) NOT NULL,
+  `date_frais` date NOT NULL,
+  `lib_trajet` varchar(50) NOT NULL,
+  `cout_peage` decimal(10,0) NOT NULL,
+  `cout_repas` decimal(10,0) NOT NULL,
+  `cout_hebergement` decimal(10,0) NOT NULL,
+  `nb_km` int(11) NOT NULL,
+  `total_km` decimal(10,0) NOT NULL,
+  `total_ligne` decimal(10,0) NOT NULL,
+  `code_statut` int(11) NOT NULL,
+  `id_motif` int(11) NOT NULL,
+  `annee` int(11) NOT NULL,
+  `id_note` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table ligne_de_frais
+-- Dumping data for table `ligne_de_frais`
 --
-INSERT INTO ligne_de_frais (id_ligne, date_frais, lib_trajet, cout_peage, cout_repas, cout_hebergement, nb_km, total_km, total_ligne, code_statut, id_motif, annee, id_note) VALUES
+
+INSERT INTO `ligne_de_frais` (`id_ligne`, `date_frais`, `lib_trajet`, `cout_peage`, `cout_repas`, `cout_hebergement`, `nb_km`, `total_km`, `total_ligne`, `code_statut`, `id_motif`, `annee`, `id_note`) VALUES
 (10, '2019-12-17', 'Mazamet - Toulouse', '10', '102222', '0', 100, '2100', '2120', 1, 1, 0, 0),
 (11, '2019-12-17', 'Mazamet - Toulouse', '10', '10', '0', 100, '2100', '2120', 0, 0, 2019, 0),
 (12, '2019-12-27', 'Mazamet', '343', '353557', '0', 100, '2100', '356000', 0, 2, 2019, 0),
 (19, '2020-03-06', 'test', '2', '50', '50', 200, '4000', '4102', 1, 1, 2020, 0);
+
 --
--- Déclencheurs ligne_de_frais
+-- Triggers `ligne_de_frais`
 --
 DELIMITER $$
 CREATE TRIGGER `before_insert_total_km` BEFORE INSERT ON `ligne_de_frais` FOR EACH ROW BEGIN
@@ -185,21 +196,26 @@ SET NEW.total_ligne = NEW.total_km + NEW.cout_peage + NEW.cout_repas + NEW.cout_
 END
 $$
 DELIMITER ;
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table ligue
+-- Table structure for table `ligue`
 --
-CREATE TABLE ligue (
-  id_ligue int(11) NOT NULL,
-  libelle varchar(50) NOT NULL,
-  adresse1 varchar(50) NOT NULL,
-  adresse2 varchar(50) NOT NULL,
-  adresse3 varchar(50) NOT NULL
+
+CREATE TABLE `ligue` (
+  `id_ligue` int(11) NOT NULL,
+  `libelle` varchar(50) NOT NULL,
+  `adresse1` varchar(50) NOT NULL,
+  `adresse2` varchar(50) NOT NULL,
+  `adresse3` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table ligue
+-- Dumping data for table `ligue`
 --
-INSERT INTO ligue (id_ligue, libelle, adresse1, adresse2, adresse3) VALUES
+
+INSERT INTO `ligue` (`id_ligue`, `libelle`, `adresse1`, `adresse2`, `adresse3`) VALUES
 (1, 'Aéromodélisme', '', '', ''),
 (2, 'Aéronautique', '', '', ''),
 (3, 'Aérostation', '', '', ''),
@@ -226,90 +242,115 @@ INSERT INTO ligue (id_ligue, libelle, adresse1, adresse2, adresse3) VALUES
 (24, 'Natation', '', '', ''),
 (25, 'Rugby', '', '', ''),
 (26, 'Tennis', '', '', '');
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table motif_de_frais
+-- Table structure for table `motif_de_frais`
 --
-CREATE TABLE motif_de_frais (
-  id_motif int(11) NOT NULL,
-  libelle varchar(50) NOT NULL
+
+CREATE TABLE `motif_de_frais` (
+  `id_motif` int(11) NOT NULL,
+  `libelle` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table motif_de_frais
+-- Dumping data for table `motif_de_frais`
 --
-INSERT INTO motif_de_frais (id_motif, libelle) VALUES
+
+INSERT INTO `motif_de_frais` (`id_motif`, `libelle`) VALUES
 (1, 'Réunion'),
 (2, 'Compétition régionale'),
 (3, 'Compétition nationale'),
 (4, 'Compétition internationnale'),
 (5, 'Stage');
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table note
+-- Table structure for table `note`
 --
-CREATE TABLE note (
-  id_note int(11) NOT NULL,
-  date_remise date NOT NULL,
-  total float NOT NULL,
-  code_statut int(11) NOT NULL,
-  id_utilisateur int(11) NOT NULL
+
+CREATE TABLE `note` (
+  `id_note` int(11) NOT NULL,
+  `date_remise` date NOT NULL,
+  `total` float NOT NULL,
+  `code_statut` int(11) NOT NULL,
+  `id_utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table note
+-- Dumping data for table `note`
 --
-INSERT INTO note (id_note, date_remise, total, code_statut, id_utilisateur) VALUES
+
+INSERT INTO `note` (`id_note`, `date_remise`, `total`, `code_statut`, `id_utilisateur`) VALUES
 (1, '2019-12-17', 0, 0, 1),
 (2, '2019-12-17', 0, 0, 35);
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table periode
+-- Table structure for table `periode`
 --
-CREATE TABLE periode (
-  annee int(11) NOT NULL,
-  forfait_km decimal(10,0) NOT NULL,
-  code_statut int(11) NOT NULL
+
+CREATE TABLE `periode` (
+  `annee` int(11) NOT NULL,
+  `forfait_km` decimal(10,2) NOT NULL,
+  `code_statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table periode
+-- Dumping data for table `periode`
 --
-INSERT INTO periode (annee, forfait_km, code_statut) VALUES
-(2019, '21', 0),
-(2020, '20', 1),
-(2021, '60', 0),
-(2052, '0', 0),
-(3030, '2', 0);
+
+INSERT INTO `periode` (`annee`, `forfait_km`, `code_statut`) VALUES
+(2019, '21.00', 0),
+(2020, '67.43', 1),
+(2021, '60.00', 0),
+(2052, '0.00', 0),
+(3030, '2.00', 0);
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table type_util
+-- Table structure for table `type_util`
 --
-CREATE TABLE type_util (
-  id_type_utilisateur int(11) NOT NULL,
-  libelle varchar(50) NOT NULL
+
+CREATE TABLE `type_util` (
+  `id_type_utilisateur` int(11) NOT NULL,
+  `libelle` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table type_util
+-- Dumping data for table `type_util`
 --
-INSERT INTO type_util (id_type_utilisateur, libelle) VALUES
+
+INSERT INTO `type_util` (`id_type_utilisateur`, `libelle`) VALUES
 (1, 'Administrateur'),
 (2, 'Controleur'),
 (3, 'Adherent');
+
 -- --------------------------------------------------------
+
 --
--- Structure de la table utilisateur
+-- Table structure for table `utilisateur`
 --
-CREATE TABLE utilisateur (
-  id_utilisateur int(11) NOT NULL,
-  nom varchar(50) NOT NULL,
-  prenom varchar(50) NOT NULL,
-  email varchar(50) NOT NULL,
-  password varchar(255) NOT NULL,
-  code_statut int(11) NOT NULL,
-  id_type_utilisateur int(11) NOT NULL
+
+CREATE TABLE `utilisateur` (
+  `id_utilisateur` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `code_statut` int(11) NOT NULL,
+  `id_type_utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Déchargement des données de la table utilisateur
+-- Dumping data for table `utilisateur`
 --
-INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, password, code_statut, id_type_utilisateur) VALUES
+
+INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `password`, `code_statut`, `id_type_utilisateur`) VALUES
 (1, 'BANDILELLA', 'CLEMENT', 'BANDILELLA@BANDILELLA.fr', '$2y$10$MhqPrY1I.kGoIB3cVzBQl.Ccob6m8QgYRTeVCpVADm/iDUuFE1Xxm', 1, 3),
 (2, 'BERBIER', 'LUCILLE', 'BERBIER@BERBIER.fr', '$2y$10$XIXS44ESJAFwhjUtN0/J9eeapdTLHWbBi.xP4tpw/D38Waakw9Qwu', 1, 3),
 (3, 'BERBIER', 'THEO', 'BERBIER@BERBIER.fr', '$2y$10$Ab23t3qHgIQLbLtf9ASWkO.fn9uDgo8FVyW8zgLnnij1xa36d/Td6', 1, 3),
@@ -353,126 +394,146 @@ INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, password, code_stat
 (100, 'Controlleur', 'Compte', 'compte@controlleur.fr', '$2y$10$4bV1UXHFo.Cisy5aNfHIC.xutl7mo2ty.jd1J5LAMNxobpPX7JvPG', 1, 2),
 (101, 'Administrateur', 'Compte', 'compte@administrateur.fr', '$2y$10$zU7N3JVr9vknvaQIEz2NuOizVH6Fu5XomQ8unmbDlSyGG6zcDHcPm', 1, 1),
 (102, 'Adherent', 'Compte', 'compte@adherent.fr', '$2y$10$6N6g7qPk0l1sCJtIfx85zeD3GhX831ZA1W5Nouph5KOLBtzm9LyqG', 1, 3);
+
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
+
 --
--- Index pour la table adherent
+-- Indexes for table `adherent`
 --
-ALTER TABLE adherent
-  ADD PRIMARY KEY (id_utilisateur),
-  ADD KEY adherent_club0_FK (id_club);
+ALTER TABLE `adherent`
+  ADD PRIMARY KEY (`id_utilisateur`),
+  ADD KEY `adherent_club0_FK` (`id_club`);
+
 --
--- Index pour la table administrateur
+-- Indexes for table `administrateur`
 --
-ALTER TABLE administrateur
-  ADD PRIMARY KEY (id_utilisateur);
+ALTER TABLE `administrateur`
+  ADD PRIMARY KEY (`id_utilisateur`);
+
 --
--- Index pour la table club
+-- Indexes for table `club`
 --
-ALTER TABLE club
-  ADD PRIMARY KEY (id_club),
-  ADD KEY club_ligue_FK (id_ligue),
-  ADD KEY club_controleur0_FK (id_utilisateur);
+ALTER TABLE `club`
+  ADD PRIMARY KEY (`id_club`),
+  ADD KEY `club_ligue_FK` (`id_ligue`),
+  ADD KEY `club_controleur0_FK` (`id_utilisateur`);
+
 --
--- Index pour la table controleur
+-- Indexes for table `controleur`
 --
-ALTER TABLE controleur
-  ADD PRIMARY KEY (id_utilisateur);
+ALTER TABLE `controleur`
+  ADD PRIMARY KEY (`id_utilisateur`);
+
 --
--- Index pour la table ligne_de_frais
+-- Indexes for table `ligne_de_frais`
 --
-ALTER TABLE ligne_de_frais
-  ADD PRIMARY KEY (id_ligne);
+ALTER TABLE `ligne_de_frais`
+  ADD PRIMARY KEY (`id_ligne`);
+
 --
--- Index pour la table ligue
+-- Indexes for table `ligue`
 --
-ALTER TABLE ligue
-  ADD PRIMARY KEY (id_ligue);
+ALTER TABLE `ligue`
+  ADD PRIMARY KEY (`id_ligue`);
+
 --
--- Index pour la table motif_de_frais
+-- Indexes for table `motif_de_frais`
 --
-ALTER TABLE motif_de_frais
-  ADD PRIMARY KEY (id_motif);
+ALTER TABLE `motif_de_frais`
+  ADD PRIMARY KEY (`id_motif`);
+
 --
--- Index pour la table note
+-- Indexes for table `note`
 --
-ALTER TABLE note
-  ADD PRIMARY KEY (id_note),
-  ADD KEY note_adherent_FK (id_utilisateur);
+ALTER TABLE `note`
+  ADD PRIMARY KEY (`id_note`),
+  ADD KEY `note_adherent_FK` (`id_utilisateur`);
+
 --
--- Index pour la table periode
+-- Indexes for table `periode`
 --
-ALTER TABLE periode
-  ADD PRIMARY KEY (annee);
+ALTER TABLE `periode`
+  ADD PRIMARY KEY (`annee`);
+
 --
--- Index pour la table type_util
+-- Indexes for table `type_util`
 --
-ALTER TABLE type_util
-  ADD PRIMARY KEY (id_type_utilisateur);
+ALTER TABLE `type_util`
+  ADD PRIMARY KEY (`id_type_utilisateur`);
+
 --
--- Index pour la table utilisateur
+-- Indexes for table `utilisateur`
 --
-ALTER TABLE utilisateur
-  ADD PRIMARY KEY (id_utilisateur),
-  ADD KEY utilisateur_type_util_FK (id_type_utilisateur);
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`id_utilisateur`),
+  ADD KEY `utilisateur_type_util_FK` (`id_type_utilisateur`);
+
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
+
 --
--- AUTO_INCREMENT pour la table club
+-- AUTO_INCREMENT for table `club`
 --
-ALTER TABLE club
-  MODIFY id_club int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `club`
+  MODIFY `id_club` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
--- AUTO_INCREMENT pour la table ligne_de_frais
+-- AUTO_INCREMENT for table `ligne_de_frais`
 --
-ALTER TABLE ligne_de_frais
-  MODIFY id_ligne int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+ALTER TABLE `ligne_de_frais`
+  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
--- AUTO_INCREMENT pour la table ligue
+-- AUTO_INCREMENT for table `ligue`
 --
-ALTER TABLE ligue
-  MODIFY id_ligue int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+ALTER TABLE `ligue`
+  MODIFY `id_ligue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
--- AUTO_INCREMENT pour la table motif_de_frais
+-- AUTO_INCREMENT for table `motif_de_frais`
 --
-ALTER TABLE motif_de_frais
-  MODIFY id_motif int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `motif_de_frais`
+  MODIFY `id_motif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT pour la table note
+-- AUTO_INCREMENT for table `note`
 --
-ALTER TABLE note
-  MODIFY id_note int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `note`
+  MODIFY `id_note` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT pour la table type_util
+-- AUTO_INCREMENT for table `type_util`
 --
-ALTER TABLE type_util
-  MODIFY id_type_utilisateur int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `type_util`
+  MODIFY `id_type_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT pour la table utilisateur
+-- AUTO_INCREMENT for table `utilisateur`
 --
-ALTER TABLE utilisateur
-  MODIFY id_utilisateur int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+ALTER TABLE `utilisateur`
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
+
 --
--- Contraintes pour la table administrateur
+-- Constraints for table `administrateur`
 --
-ALTER TABLE administrateur
-  ADD CONSTRAINT administrateur_utilisateur_FK FOREIGN KEY (id_utilisateur) REFERENCES utilisateur (id_utilisateur);
+ALTER TABLE `administrateur`
+  ADD CONSTRAINT `administrateur_utilisateur_FK` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
+
 --
--- Contraintes pour la table controleur
+-- Constraints for table `controleur`
 --
-ALTER TABLE controleur
-  ADD CONSTRAINT controleur_utilisateur_FK FOREIGN KEY (id_utilisateur) REFERENCES utilisateur (id_utilisateur);
+ALTER TABLE `controleur`
+  ADD CONSTRAINT `controleur_utilisateur_FK` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
+
 --
--- Contraintes pour la table note
+-- Constraints for table `note`
 --
-ALTER TABLE note
-  ADD CONSTRAINT note_adherent_FK FOREIGN KEY (id_utilisateur) REFERENCES adherent (id_utilisateur);
-COMMIT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `note`
+  ADD CONSTRAINT `note_adherent_FK` FOREIGN KEY (`id_utilisateur`) REFERENCES `adherent` (`id_utilisateur`);
