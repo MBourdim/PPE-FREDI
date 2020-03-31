@@ -28,14 +28,10 @@ $tarif = isset($_POST['tarif']) ? $_POST['tarif'] : '';
 $statut = isset($_POST['statut']) ? $_POST['statut'] : '';
 $submit = isset($_POST['periodeForm']);
 
-$error = '';
-
 if($submit) {
     if($annee != '' && $tarif != '' && $statut != '') {
         $periode = new PeriodeDAO();
-        $error = $periode->updatePeriode($annee, $tarif, $statut);
-    } else {
-        $error = 'Veuillez compléter les champs correctement.';
+        $periode->updatePeriode($annee, $tarif, $statut);
     }
 }
 ?>
@@ -61,8 +57,8 @@ if($submit) {
                 </div>
                 <?php
                 //Message d'erreur
-                if ($error != '') {
-                    echo '<p class="color: red">' . $error . '</p>';
+                if (isset($_GET['res'])) {
+                    echo '<p class="color: red">' . $_GET['res'] . ' Retourner à la <a href="liste_periode.php">liste</a></p>';
                 }
                 ?>
             </div>
@@ -73,8 +69,8 @@ if($submit) {
                     </div>
                     <div class="col-md-6"><span>Statut:&nbsp;</span>
                         <select class="form-control" name="statut">
-                            <option value="1" <?php if($tarifPeriode->getCodeStatut() == 0) { echo "selected"; }?>>Ouverte</option>
-                            <option value="0" <?php if($tarifPeriode->getCodeStatut() == 1) { echo "selected"; }?>>Fermée</option>
+                            <option value="1" <?php if($tarifPeriode->getCodeStatut() == 1) { echo "selected"; }?>>Ouverte</option>
+                            <option value="0" <?php if($tarifPeriode->getCodeStatut() == 0) { echo "selected"; }?>>Fermée</option>
                         </select>
                     </div>
                 </div>
