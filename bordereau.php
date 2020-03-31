@@ -124,5 +124,4 @@ $pdf = new PDF();
     $id = date('dmYhms');
     // $file = $pdf->Output("F", 'outfiles/bordereau_pdf.pdf'/*.$id.*/);
     //$link = "outfiles/bordereau_pdf.pdf";
-    $pdf->Output();
-    
+    $pdf->Output();    
