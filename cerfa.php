@@ -1,31 +1,14 @@
 <?php
 include ('fpdf/fpdf.php');
-include_once('DAO/adherent.php');
-include_once('DAO/adherentDAO.php');
-include_once('DAO/club.php');
-include_once('DAO/clubDAO.php');
-require_once('init.php');
-
-$id_adherent = isset($_GET['id']) ? $_GET["id"] : "";
-//Collection des adherent
-$adherent = new AdherentDAO();
-$unAdherent = $adherent->find($id_adherent);
-
-$id_club = isset($_GET['id']) ? $_GET["id"] : "";
-//Collection des adherent
-$club = new ClubDAO();
-$unClub = $club->find($id_club);
-
-$error = '';
 
 $fpdf = new FPDF();
 $fpdf->AddPage();
 $fpdf->Image('fpdf/image/cerfa.png', 0, 0);
 
 $fpdf->SetFont('Arial','', 16);
-$fpdf->Cell(175, 45, utf8_decode($unClub->getLibelle()), 0, 1, 'C');
+$fpdf->Cell(175, 45, utf8_decode("Salles d’Armes de Villers lès Nancy"), 0, 1, 'C');
 $fpdf->Cell(175, -25, utf8_decode("1, rue Rodin - 54600 Villers-lès-Nancy"), 0, 1, 'C');
-$fpdf->Cell(175, 50, utf8_decode("Club d Escrime"), 0, 1, 'C');
+$fpdf->Cell(175, 50, utf8_decode("Club d’Escrime"), 0, 1, 'C');
 
 $fpdf->SetFont('Arial','',12);
 $fpdf->SetX(20);

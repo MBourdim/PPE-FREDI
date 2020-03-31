@@ -62,9 +62,9 @@ $pdf = new PDF();
     }*/
     $pdf->SetFillColor(224,235,255);
     $pdf->SetDrawColor(33,150,243);
-    $pdf->Write(7, utf8_decode("Je soussigné ".$row->getNom_resp()." ".$row->getPrenom_resp()." , demeurant au :"));
+    $pdf->Write(7, utf8_decode("Je soussigné ".$unAdherent->getNom_resp()." ".$unAdherent->getPrenom_Resp().", demeurant au : "));
     $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode("".$row->getAdresse1()."".$row->getAdresse2()."".$row->Adresse3().""), 1, 0, 'C', true);
+  $pdf->Cell(190, 7, utf8_decode($unAdherent->getAdresse1(), $unAdherent->getAdresse2(), $unAdherent->getAdresse3()), 1, 0, 'C', true);
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association: "));
     $pdf->Ln();
@@ -124,5 +124,4 @@ $pdf = new PDF();
     $id = date('dmYhms');
     // $file = $pdf->Output("F", 'outfiles/bordereau_pdf.pdf'/*.$id.*/);
     //$link = "outfiles/bordereau_pdf.pdf";
-    $pdf->Output();
-    
+    $pdf->Output();    
