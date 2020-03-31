@@ -37,7 +37,7 @@ if($submit) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>FREDI Creer Periode</title>
+    <title>FREDI Créer Periode</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -78,7 +78,7 @@ if($submit) {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 text-center"><button class="btn btn-primary" type="submit" name="periodeForm" style="margin-top: 15%; width: 100%">Creer la periode</button></div>
+                    <div class="col-md-12 text-center"><button class="btn btn-primary" type="submit" name="periodeForm" style="margin-top: 15%; width: 100%">Créer la periode</button></div>
                 </div>
             </form>
         </div>

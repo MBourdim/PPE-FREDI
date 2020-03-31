@@ -35,7 +35,7 @@ if($submit) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>FREDI Periode Liste</title>
+    <title>FREDI Période Liste</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -48,7 +48,7 @@ if($submit) {
             <div class="row">
                 <div class="col-md-12 text-center">
                     <a href="creer_periode.php">
-                        <button class="btn btn-primary" type="button" style="margin-bottom: 25px; width: 100%;">Creer une periode</button>
+                        <button class="btn btn-primary" type="button" style="margin-bottom: 25px; width: 100%;">Créer une periode</button>
                     </a>
                     <?php
                     if ($error != '') {
