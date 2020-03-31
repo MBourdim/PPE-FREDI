@@ -62,15 +62,9 @@ $pdf = new PDF();
     }*/
     $pdf->SetFillColor(224,235,255);
     $pdf->SetDrawColor(33,150,243);
-<<<<<<< HEAD
     $pdf->Write(7, utf8_decode("Je soussigné ".$row->getNom_resp()." ".$row->getPrenom_resp()." , demeurant au :"));
     $pdf->Ln();
   $pdf->Cell(190, 7, utf8_decode("".$row->getAdresse1()."".$row->getAdresse2()."".$row->Adresse3().""), 1, 0, 'C', true);
-=======
-    $pdf->Write(7, utf8_decode("Je soussigné ".$unAdherent->getNom_resp()." , demeurant au : "));
-    $pdf->Ln();
-  $pdf->Cell(190, 7, utf8_decode($unAdherent->getAdresse1()), 1, 0, 'C', true);
->>>>>>> e2d88d9767777729b6529dc33d12de861a92d5ec
     $pdf->Ln();
     $pdf->Write(7, utf8_decode("certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association: "));
     $pdf->Ln();
