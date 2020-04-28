@@ -22,6 +22,7 @@ if ($submit) {
         $pass_hache = password_hash($password, PASSWORD_DEFAULT);
         $user = new UsersDAO();
         $user->newUser($nom, $prenom, $email, $pass_hache);
+        $user->newAdherent($idUtilisateur, $nom, $prenom);
     } else {
         $error = 'Veuillez compléter les champs correctement.';
     }

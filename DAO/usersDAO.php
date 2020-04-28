@@ -35,7 +35,7 @@ class UsersDAO extends DAO {
     }
 
     //Nouveau adherent
-    public function newAdherent($idUtilisateur) {
+    public function newAdherent($idUtilisateur, $nom, $prenom) {
         $sql = "INSERT INTO adherent (id_utilisateur, numero_licence, code_sexe, date_naissance, adresse1, adresse2, adresse3, nom_responsable, prenom_responsable, code_statut, id_club) ";
         $sql .= "VALUES (:id_utilisateur, :numero_licence, :code_sexe, :date_naissance, :adresse1, :adresse2, :adresse3, :nom_responsable, :prenom_responsable, :code_statut, :id_club)";
 
@@ -44,13 +44,13 @@ class UsersDAO extends DAO {
             $sth->execute(array(
                 ':id_utilisateur' => $idUtilisateur,
                 ':numero_licence' => '',
-                ':code_sexe' => '',
-                ':date_naissance' => '',
-                ':adresse1' => '',
-                ':adresse2' => '',
-                ':adresse3' => '',
-                ':nom_responsable' => '',
-                ':prenom_responsable' => '',
+                ':code_sexe' => 'M',
+                ':date_naissance' => '28/04/2020',
+                ':adresse1' => '45 rue de Limayrac',
+                ':adresse2' => '54000',
+                ':adresse3' => 'Laxou',
+                ':nom_responsable' => $nom,
+                ':prenom_responsable' => $prenom,
                 ':code_statut' => 1,
                 ':id_club' => 1
             ));
