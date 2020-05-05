@@ -30,8 +30,8 @@ class UsersDAO extends DAO {
 
         // $idUtilisateur = $this->findUserPourInscription($email);
         // $this->newAdherent($idUtilisateur);
-
-        header('Location: connexion.php');
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        /*header('Location: connexion.php');*/
     }
 
     //Nouveau adherent
@@ -48,7 +48,7 @@ class UsersDAO extends DAO {
                 ':date_naissance' => '28/04/2020',
                 ':adresse1' => '45 rue de Limayrac',
                 ':adresse2' => '54000',
-                ':adresse3' => 'Laxou',
+                ':adresse3' => 'Toulouse',
                 ':nom_responsable' => $nom,
                 ':prenom_responsable' => $prenom,
                 ':code_statut' => 1,
@@ -57,6 +57,8 @@ class UsersDAO extends DAO {
         } catch (PDOException $ex) {
             throw new Exception("Erreur lors de la requête SQL : ".$ex->getMessage());
         }
+
+        header('Location: connexion.php');
     }
 
     //Mise à jour du profil adherent
