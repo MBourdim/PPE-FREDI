@@ -8,6 +8,8 @@ require_once('init.php');
 session_start();
 
 
+
+
 //Verifie si on est connecter
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
